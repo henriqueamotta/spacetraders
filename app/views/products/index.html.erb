@@ -1,0 +1,36 @@
+<h1 class="text-center text-gold mt-4">PRODUCTS</h1>
+<div class="line mb-4"></div>
+
+<div class="filters mb-4 d-flex justify-content-between">
+  <div>
+    <button class="btn btn-outline-light btn-sm">
+      <i class="fas fa-filter"></i> Filter
+    </button>
+  </div>
+  <div>
+    <button class="btn btn-outline-light btn-sm">
+      <i class="fas fa-sort"></i> Order
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-md-6 mb-4">
+      <div class="card product-card bg-dark text-light">
+        <% if product.photos.attached? %>
+          <div class="card-img-top text-center">
+            <%= image_tag product.photos.first, class: "product-image" %>
+          </div>
+        <% end %>
+        <div class="card-body text-center">
+          <h5 class="product-title"><%= product.name %></h5>
+          <div class="line my-2"></div>
+          <p class="product-description"><%= product.overview.truncate(100) %></p>
+          <p class="product-price"><%= number_to_currency(product.price, unit: "BTC ") %></p>
+          <%= link_to "Buy Now", product_path(product), class: "btn btn-buy" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
