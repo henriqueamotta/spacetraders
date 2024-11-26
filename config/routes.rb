@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :products, only: %i[index show new create]
+  resources :orders, only: [:index, :show, :new, :create, :destroy]
 end
