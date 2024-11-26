@@ -1,0 +1,10 @@
+<h1>Orders#show</h1>
+
+<p>User: <%= @order.user.name %></p>
+<p>Product: <%= @order.product.name %></p>
+<p>Status: <%= @order.status %></p>
+<p>Total: <%= @order.total %></p>
+
+<%= link_to 'Back', orders_path %>
+<%= link_to 'Delete Order', @order, method: :delete, data: { confirm: 'Are you sure?' } %>
+<p>Find me in app/views/orders/show.html.erb</p>
