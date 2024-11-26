@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+  get 'orders/show'
+  get 'orders/new'
+  get 'orders/create'
+  get 'orders/destroy'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -12,4 +17,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :products, only: %i[index show new create]
+  resources :orders, only: [:index, :show, :new, :create, :destroy]
 end
