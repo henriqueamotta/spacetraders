@@ -20,7 +20,7 @@
       <div class="card product-card bg-dark text-light">
         <% if product.photos.attached? %>
           <div class="card-img-top text-center">
-            <%= image_tag product.photos.first, class: "product-image" %>
+            <%= cl_image_tag product.photos.first.key, class: "product-image" %>
           </div>
         <% end %>
         <div class="card-body text-center">
