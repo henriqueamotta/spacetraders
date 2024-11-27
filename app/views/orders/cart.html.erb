@@ -1,0 +1,12 @@
+<h1>Your Cart</h1>
+<% if @products.present? %>
+  <ul>
+    <% @products.each do |product| %>
+      <li>
+        <%= product.name %> - <%= number_to_currency(product.price, unit: "BTC ") %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Your cart is empty.</p>
+<% end %>
