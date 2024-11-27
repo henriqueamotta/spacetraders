@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   resources :products, only: %i[index show new create]
   resources :orders, only: [:index, :show, :new, :create, :destroy]
+
+  get "products/category/:category", to: "products#index", as: :filtered_products
 end

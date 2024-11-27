@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
+    if params[:category]
+      @products = Product.where(category: params[:category].capitalize)
+    else
     @products = Product.all
+    end
   end
 
   def new
@@ -47,6 +51,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :model, :price, :manufacturer, :overview, photos: [])
+    params.require(:product).permit(:name, :model, :category, :price, :manufacturer, :overview, photos: [])
   end
 end

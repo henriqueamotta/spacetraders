@@ -3,11 +3,12 @@
     <div class="col-md-6">
       <%= form.input :name, label: "Product Name:", input_html: { class: "custom-input" } %>
       <%= form.input :model, label: "Model:", input_html: { class: "custom-input" } %>
+      <%= form.input :category, collection: Product::CATEGORIES, label: "Category:", prompt: "Select a category", as: :select %>
       <%= form.input :terrain, label: "Terrain:", input_html: { class: "custom-input" } %>
       <%= form.input :passengers, label: "Passengers:", input_html: { class: "custom-input" } %>
       <%= form.input :crew, label: "Crew:", input_html: { class: "custom-input" } %>
-      <%= form.input :length, label: "Length:", input_html: { class: "custom-input" } %>
-      <%= form.input :fuel_capacity, label: "Fuel Capacity:", input_html: { class: "custom-input" } %>
+      <%= form.input :length, label: "Length (KM):", input_html: { class: "custom-input" } %>
+      <%= form.input :fuel_capacity, label: "Fuel Capacity (TONS):", input_html: { class: "custom-input" } %>
       <%= form.input :cargo_capacity, label: "Cargo Capacity:", input_html: { class: "custom-input" } %>
     </div>
     <div class="col-md-6">
