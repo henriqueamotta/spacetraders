@@ -44,6 +44,12 @@ class ProductsController < ApplicationController
     redirect_to products_path, notice: 'Product was successfully deleted!'
   end
 
+  def add_to_cart
+    session[:cart] ||= []
+    session[:cart] << params[:id].to_i
+    redirect_to new_order_path, notice: "Item added to cart."
+  end
+
   private
 
   def set_product

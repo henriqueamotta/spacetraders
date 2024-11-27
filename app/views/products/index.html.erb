@@ -28,7 +28,7 @@
           <div class="line my-2"></div>
           <p class="product-description"><%= product.overview.truncate(100) %></p>
           <p class="product-price"><%= number_to_currency(product.price, unit: "BTC ") %></p>
-          <%= link_to "Buy Now", product_path(product), class: "btn btn-buy" %>
+          <%= button_to "Buy Now", add_to_cart_path(product), method: :post, class: "btn btn-buy" %>
         </div>
       </div>
     </div>

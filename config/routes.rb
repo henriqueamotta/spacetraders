@@ -1,23 +1,25 @@
 Rails.application.routes.draw do
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/new'
-  get 'orders/create'
-  get 'orders/destroy'
   devise_for :users
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # About us
   get '/about-us', to: 'pages#about', as: 'about_us'
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Defines the root path route ("/")
-  # root "posts#index"
-
+  # Rotas para produtos
   resources :products, only: %i[index show new create]
-  resources :orders, only: [:index, :show, :new, :create, :destroy]
 
+  # Rota para categorias filtradas
   get "products/category/:category", to: "products#index", as: :filtered_products
+
+  # Rotas para pedidos
+  resources :orders, only: [:index, :show, :new, :create, :destroy] do
+    collection do
+      delete "remove_from_cart/:product_id", to: "orders#remove_from_cart", as: :remove_from_cart
+    end
+  end
+
+  # Adicionar ao carrinho
+  post "cart/:id", to: "products#add_to_cart", as: "add_to_cart"
 end

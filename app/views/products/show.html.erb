@@ -38,6 +38,6 @@
     </ul>
 
     <h2 class="text-neon">Price: <%= number_to_currency(@product.price, unit: "BTC ") %></h2>
-    <%= link_to "Buy Now", "#", class: "btn btn-buy mt-3" %>
+    <%= link_to "Buy Now", add_to_cart_path(@product), method: :post, class: "btn btn-buy mt-3" %>
   </div>
 </div>
