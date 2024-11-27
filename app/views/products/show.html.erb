@@ -7,7 +7,7 @@
       <div class="carousel-inner">
         <% @product.photos.each_with_index do |photo, index| %>
           <div class="carousel-item <%= 'active' if index == 0 %>">
-            <%= image_tag photo, class: "product-image-carousel" %>
+            <%= cl_image_tag photo.key, class: "product-image-carousel" %>
           </div>
         <% end %>
       </div>
