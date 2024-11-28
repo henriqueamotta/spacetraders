@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails";
 import "controllers";
 import "bootstrap";
+import "@popperjs/core"
 
 // Importação do objeto application do sistema Stimulus
 import { application } from "./controllers/application";
