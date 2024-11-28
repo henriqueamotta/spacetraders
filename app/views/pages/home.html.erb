@@ -1,17 +1,19 @@
 <div class="hero-section">
   <h1 class="hero-title">The Universe's Largest Marketplace!</h1>
-  <p class="hero-subtitle">Hot Deals from Across the Universe!</p>
 
   <div class="featured-product">
+    <div>
+      <p class="hero-subtitle">Hot Deals from Across the Universe!</p>
+      <h2 class="product-title">Lando's Millenium Falcon</h2>
+      <p class="discount">20% OFF</p>
+      <%= link_to "VIEW DETAILS", product_path(1), class: "btn btn-primary" %>
+    </div>
     <%= cl_image_tag("xxdbsnhi92ab5dobfcdj",
       transformation: { width: 1000, crop: "limit" },
       alt: "Lando's Millennium Falcon",
       class: "featured-image",
       height: 450,
       crop: "fit") %>
-    <h2 class="product-title">Lando's Millenium Falcon</h2>
-    <p class="discount">20% OFF</p>
-    <%= link_to "VIEW DETAILS", product_path(1), class: "btn btn-primary" %>
   </div>
 </div>
 
@@ -29,8 +31,6 @@
     <h3>Join the Galactic Marketplace Today!</h3>
     <%= link_to "SIGN UP NOW", new_user_registration_path, class: "btn btn-warning" %>
   </div>
-</div>
-
 <div class="categories-section">
   <div class="category-card">
     <%= cl_image_tag("skjlrfr3pk9showa5y9c",
@@ -62,4 +62,5 @@
     <h4>SPACESHIPS</h4>
     <%= link_to "VIEW DETAILS", filtered_products_path(category: "spaceships"), class: "btn btn-secondary"%>
   </div>
+</div>
 </div>
