@@ -67,7 +67,8 @@ class OrdersController < ApplicationController
     render :new
   end
 
-
+  def order_confirmation
+  end
 
 
   private
