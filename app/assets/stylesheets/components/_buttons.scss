@@ -1,0 +1,14 @@
+.btn-edit {
+  display: inline-flex; /* Garante o alinhamento do texto */
+  align-items: center; /* Centraliza verticalmente o texto */
+  justify-content: center; /* Centraliza horizontalmente o texto */
+  width: 190px; /* Mesma largura que o botão "Delete" */
+  height: 37px; /* Mesma altura */
+  padding: 0; /* Remove padding extra */
+  border: 2px solid #512DA8; /* Borda roxa */
+  background-color: #512DA8; /* Cor de fundo roxa */
+  color: #FFC300; /* Texto amarelo */
+  border-radius: 5px; /* Bordas arredondadas iguais */
+  text-align: center; /* Centraliza o texto */
+  text-decoration: none; /* Remove sublinhado de links */
+}
