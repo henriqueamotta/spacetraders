@@ -2,3 +2,25 @@
     //max-width: 300px; /* Limita a largura */
     //height: auto; /* Mantém a proporção */
   //}
+.product-image {
+    width: 100%; /* Limita a largura */
+    height: 300px; /* Mantém a proporção */
+    object-fit: contain; /*impede que a imagem distorçida */
+     background-color: #fff;
+  }
+
+.btn-buy {
+  border: 2px solid #FFC300; /* Borda preta de 2px */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 30px; /* Bordas levemente arredondadas */
+  background-color: #FFC300;
+  color: #512DA8;
+}
+
+.btn-details {
+  border: 2px solid #121212; /* Borda preta de 2px */
+  padding: 10px 20px; /* Espaçamento interno */
+  border-radius: 30px; /* Bordas levemente arredondadas */
+  background-color: #121212;
+  color: #CFD8DC;
+}
