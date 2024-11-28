@@ -5,7 +5,7 @@ eagerLoadControllersFrom("controllers", application)
 
 import CheckoutController from "./checkout_controller";
 
-const application = Application.start();
+// const application = Application.start();
 
 // Registra o controlador de checkout
 application.register("checkout", CheckoutController);

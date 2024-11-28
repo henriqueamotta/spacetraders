@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   # Rotas para pedidos
   resources :orders, only: [:index, :show, :new, :create, :destroy] do
+    member do
+      get 'confirmation'
+    end
     collection do
       delete "remove_from_cart/:product_id", to: "orders#remove_from_cart", as: :remove_from_cart
     end

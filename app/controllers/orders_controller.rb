@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
 
 
   def index
-    @orders = Order.where(user: current_user) # Lista pedidos do usuário logado
+    @orders = Order.includes(:user, :products).where(user: current_user) # Lista pedidos do usuário logado
   end
 
   def show
@@ -14,31 +14,34 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @subtotal = @cart_products.sum(&:price) # Calcula o subtotal dos produtos no carrinho
-    @shipping_methods = {
-      "Shooting Star Deliveries" => 0.35, # Frete padrão
-      "Meteor Post Express" => 0.45      # Frete expresso
-    }
-    @selected_shipping_cost = @shipping_methods["Shooting Star Deliveries"] # Frete inicial
-    @total = @subtotal + @selected_shipping_cost # Total inicial
+    @shipping_methods = 10.000
+    @total = @subtotal
   end
+
 
   def create
     @order = Order.new(order_params)
     @order.user = current_user
-    @shipping_methods = {
-      "Shooting Star Deliveries" => 0.35,
-      "Meteor Post Express" => 0.45
-    }
-    selected_shipping_cost = @shipping_methods[params[:order][:shipping_method]]
-    @order.total = @cart_products.sum(&:price) + selected_shipping_cost
+
+    # Definir métodos de envio
+    @shipping_methods = 10.000
+
+
+    # Calcular total e associar produtos
+    @order.total = @cart_products.sum(&:price) + @shipping_methods
+    @order.products = @cart_products
 
     if @order.save
-      session[:cart] = [] # Limpa o carrinho após o pedido ser salvo
-      redirect_to @order, notice: 'Order was successfully placed!'
+      session[:cart] = [] # Limpa o carrinho após salvar
+      redirect_to confirmation_order_path(@order), notice: 'Order was successfully placed!'
     else
+      Rails.logger.debug "Order Errors: #{@order.errors.full_messages}"
       render :new, status: :unprocessable_entity
     end
   end
+
+
+
 
   def destroy
     @order.destroy
@@ -52,12 +55,8 @@ class OrdersController < ApplicationController
     # Recalcula os valores
     @cart_products = Product.where(id: session[:cart])
     @subtotal = @cart_products.sum(&:price)
-    @shipping_methods = {
-      "Shooting Star Deliveries" => 0.35,
-      "Meteor Post Express" => 0.45
-    }
-    @selected_shipping_cost = @shipping_methods["Shooting Star Deliveries"]
-    @total = @subtotal + @selected_shipping_cost
+    @shipping_methods = 10.000
+    @total = @subtotal + @shipping_methods
 
     # Cria um novo pedido para o formulário
     @order = Order.new
@@ -67,7 +66,8 @@ class OrdersController < ApplicationController
     render :new
   end
 
-
+  def order_confirmation
+  end
 
 
   private
