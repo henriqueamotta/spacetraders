@@ -1,9 +1,8 @@
 <%= simple_form_for @product, html: { multipart: true, class: "product-form" } do |form| %>
-  <div class="row">
-    <div class="col-md-6">
+  <div class="product-form-container">
+    <div class="form-column">
       <%= form.input :name, label: "Product Name:", input_html: { class: "custom-input" } %>
       <%= form.input :model, label: "Model:", input_html: { class: "custom-input" } %>
-      <%= form.input :category, collection: Product::CATEGORIES, label: "Category:", prompt: "Select a category", as: :select %>
       <%= form.input :terrain, label: "Terrain:", input_html: { class: "custom-input" } %>
       <%= form.input :passengers, label: "Passengers:", input_html: { class: "custom-input" } %>
       <%= form.input :crew, label: "Crew:", input_html: { class: "custom-input" } %>
@@ -11,15 +10,17 @@
       <%= form.input :fuel_capacity, label: "Fuel Capacity (TONS):", input_html: { class: "custom-input" } %>
       <%= form.input :cargo_capacity, label: "Cargo Capacity:", input_html: { class: "custom-input" } %>
     </div>
-    <div class="col-md-6">
+
+    <div class="form-column">
       <%= form.input :price, label: "Price:", input_html: { class: "custom-input" } %>
       <%= form.input :manufacturer, label: "Manufacturer:", input_html: { class: "custom-input" } %>
+      <%= form.input :category, collection: Product::CATEGORIES, label: "Category:", prompt: "Select a category", as: :select, input_html: { class: "custom-select" } %>
       <%= form.input :overview, label: "Overview:", as: :text, input_html: { rows: 5, class: "custom-textarea" } %>
       <%= form.input :photos, label: "Upload Images:", as: :file, input_html: { multiple: true, class: "custom-file-input" } %>
     </div>
   </div>
 
-  <div class="text-center mt-4">
+  <div class="form-footer text-center">
     <%= form.submit "Submit", class: "btn btn-submit" %>
   </div>
 <% end %>
