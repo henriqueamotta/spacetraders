@@ -1,7 +1,7 @@
 <h1 class="text-center text-neon"><%= @product.name %></h1>
 <div class="line mb-4"></div>
 
-<div class="row">
+<div class="row justify-content-center w-100">
   <div class="col-md-6">
     <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -26,18 +26,18 @@
 
     <h2>TECHNICAL SPECS:</h2>
     <ul class="product-specs">
-      <li><strong>Name:</strong> <%= @product.name %></li>
-      <li><strong>Model:</strong> <%= @product.model %></li>
-      <li><strong>Terrain:</strong> <%= @product.terrain %></li>
-      <li><strong>Passengers:</strong> <%= @product.passengers %></li>
-      <li><strong>Crew:</strong> <%= @product.crew %></li>
-      <li><strong>Length:</strong> <%= @product.length %></li>
-      <li><strong>Fuel Capacity:</strong> <%= @product.fuel_capacity %></li>
-      <li><strong>Cargo Capacity:</strong> <%= @product.cargo_capacity %></li>
-      <li><strong>Manufacturer:</strong> <%= @product.manufacturer %></li>
+      <li><strong>Name:</strong> <span class="font-style"><%= @product.name %></span></li>
+      <li><strong>Model:</strong> <span class="font-style"><%= @product.model %></span></li>
+      <li><strong>Terrain:</strong> <span class="font-style"><%= @product.terrain %></span></li>
+      <li><strong>Passengers:</strong> <span class="font-style"><%= @product.passengers %></span></li>
+      <li><strong>Crew:</strong> <span class="font-style"><%= @product.crew %></span></li>
+      <li><strong>Length:</strong> <span class="font-style"><%= @product.length %></span></li>
+      <li><strong>Fuel Capacity:</strong> <span class="font-style"><%= @product.fuel_capacity %></span></li>
+      <li><strong>Cargo Capacity:</strong> <span class="font-style"><%= @product.cargo_capacity %></span></li>
+      <li><strong>Manufacturer:</strong> <span class="font-style"><%= @product.manufacturer %></span></li>
     </ul>
 
-    <h2 class="text-neon">Price: <%= number_to_currency(@product.price, unit: "BTC ") %></h2>
+    <h2 class="text-neon">Price: <span class="price"> <%= number_to_currency(@product.price, unit: "BTC ") %></span></h2>
     <%= link_to "Buy Now", add_to_cart_path(@product), method: :post, class: "btn btn-buy mt-3" %>
 
     <% if current_user == @product.user %>
