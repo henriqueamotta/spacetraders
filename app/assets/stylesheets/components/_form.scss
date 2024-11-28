@@ -1,0 +1,54 @@
+.product-form-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  border: 2px solid #03fcb1; /* Cor da borda verde */
+  border-radius: 10px;
+  background-color: #151515; /* Fundo escuro */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  .custom-input,
+  .custom-textarea,
+  .custom-select {
+    background-color: #1f1f1f; /* Fundo dos inputs */
+    border: 2px solid #03fcb1; /* Borda personalizada */
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+
+    &:focus {
+      border-color: #aafaff; /* Destaque ao focar */
+      outline: none;
+    }
+  }
+}
+
+.form-footer {
+  margin-top: 20px;
+
+  .btn-submit {
+    background-color: #ffc300; /* Amarelo do botão */
+    color: #512DA8; /* Texto roxo */
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #ffdb4d; /* Amarelo mais claro */
+      box-shadow: 0 4px 10px rgba(255, 195, 0, 0.6);
+    }
+  }
+}
