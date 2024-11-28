@@ -1,12 +1,13 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_product, only: %i[show edit update destroy]
+  before_action :authorize_user!, only: %i[edit update destroy] # Verifica autorização
 
   def index
     if params[:category]
       @products = Product.where(category: params[:category].capitalize)
     else
-    @products = Product.all
+      @products = Product.all
     end
   end
 
@@ -40,6 +41,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    authorize_user! # verificação de autorização do usuário
     @product.destroy
     redirect_to products_path, notice: 'Product was successfully deleted!'
   end
@@ -54,9 +56,17 @@ class ProductsController < ApplicationController
 
   def set_product
     @product = Product.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to products_path, alert: "Product not found."
   end
 
   def product_params
     params.require(:product).permit(:name, :model, :category, :price, :manufacturer, :overview, photos: [])
+  end
+
+  def authorize_user!
+    unless @product.user_id == current_user.id
+      redirect_to products_path, notice: 'You do not have permission to delete this product!'
+    end
   end
 end
