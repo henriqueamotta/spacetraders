@@ -1,6 +1,6 @@
 <h1 class="text-center text-neon">EDIT PRODUCT</h1>
 <div class="line mb-4"></div>
 
-<div class="form-container">
-  <%= render "form", product: @product %>
-</div>
+<%= render 'form', product: @product %>
+
+<%= link_to 'Back to Product', @product, class: 'btn btn-secondary mt-4' %>
