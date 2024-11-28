@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div class="row justify-content-center w-100" >
+<div class="row justify-content-center w-100">
   <% @products.each do |product| %>
     <div class="col-md-5 mb-4">
       <div class="card product-card bg-dark text-light">
@@ -28,7 +28,11 @@
           <div class="line my-2"></div>
           <p class="product-description"><%= product.overview.truncate(100) %></p>
           <p class="product-price"><%= number_to_currency(product.price, unit: "BTC ") %></p>
-          <%= button_to "Buy Now", add_to_cart_path(product), method: :post, class: "btn btn-buy" %>
+
+          <div class="d-flex justify-content-center mt-3">
+            <%= button_to "Buy Now", add_to_cart_path(product), method: :post, class: "btn btn-buy me-2" %>
+            <%= link_to "Details", product_path(product), class: "btn btn-details" %>
+          </div>
         </div>
       </div>
     </div>
