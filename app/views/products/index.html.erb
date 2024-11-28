@@ -14,9 +14,9 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row justify-content-center w-100" >
   <% @products.each do |product| %>
-    <div class="col-md-6 mb-4">
+    <div class="col-md-5 mb-4">
       <div class="card product-card bg-dark text-light">
         <% if product.photos.attached? %>
           <div class="card-img-top text-center">
