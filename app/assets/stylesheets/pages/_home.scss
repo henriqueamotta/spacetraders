@@ -1,5 +1,6 @@
 // Hero Section
 .hero-section {
+
   text-align: center;
   background-color: $black;
   color: $light-gray;
@@ -23,6 +24,7 @@
 
   .featured-product {
     display: flex;
+    align-items: center;
     margin-top: 30px;
     border: 6px solid $purple;
 
@@ -30,9 +32,10 @@
       //width: 100%;
       //object-fit: contain;
       //max-width: 1000px;
-      height: 80vh;
+      height: 50vh;
       margin: 0 auto;
       border-radius: 12px;
+      object-fit: cover;
       //box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
     }
 
@@ -140,9 +143,9 @@
   display: flex;
   gap: 16px;
   justify-content: space-around;
-  margin-top: 50px;
+  //margin-top: 50px;
   //background-color: $black;
-  padding: 50px;
+  padding: 0 50px;
 
   .category-card {
     text-align: center;
@@ -168,7 +171,7 @@
       margin: 15px 0;
     }
 
-    .btn-secondary {
+    .btn-home {
       //background-color: $green;
       border-color: $green;
       //color: $black;
