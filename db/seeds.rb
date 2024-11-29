@@ -67,8 +67,8 @@ product_3 = Product.new(
 )
 product_3.photos.attach(
   io: URI.open("https://static.wikia.nocookie.net/starwars/images/1/11/AT-AT_Rebels_Fathead.png/revision/latest/scale-to-width-down/1000?cb=20161108043916"),
-  filename: "atat_walker.jpg",
-  content_type: "image/jpg"
+  filename: "atat_walker.png",
+  content_type: "image/png"
 )
 product_3.save!
 
@@ -87,6 +87,23 @@ product_4.photos.attach(
   content_type: "image/jpg"
 )
 product_4.save!
+
+
+product_5 = Product.new(
+  user: user_1,
+  name: "Lando's Millenium Falcon",
+  model: "Falcon",
+  manufacturer: "Interprise",
+  overview: "Millennium Falcon Enterprises (MFE) is the galaxy’s most dynamic, resourceful, and occasionally rebellious logistics and trade company. From hyperspace shipping to interstellar trading and specialized cargo handling, we’ve built a reputation for speed, reliability, and outmaneuvering any challenge (including Imperial blockades).",
+  category: "Vehicles",
+  price: 150000.00
+)
+product_5.photos.attach(
+  io: URI.open("https://www.pngarts.com/files/3/Millennium-Falcon-Star-Wars-PNG-Photo.png"),
+  filename: "Millennium-Falcon-Star-Wars-PNG-Photo.png",
+  content_type: "image/png"
+)
+product_5.save!
 
 
 # 4. Display a message :tada:
