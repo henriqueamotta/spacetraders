@@ -72,11 +72,15 @@
 
 // Features Section
 .features-section {
-  display: flex;
-  justify-content: space-between;
+  //display: flex;
+  //justify-content: space-between;
   // background-color: $purple;
-  padding: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  //padding: 50px;
   color: $light-gray;
+  margin-bottom: 50px;
+  align-items: center;
 
   .why-us {
     flex: 1;
@@ -136,50 +140,50 @@
       }
     }
   }
-}
+  // Categories Section
+  .categories-section {
+    height: 100%;
+    display: flex;
+    gap: 16px;
+    justify-content: space-around;
+    //margin-top: 50px;
+    //background-color: $black;
+    padding: 0 50px;
 
-// Categories Section
-.categories-section {
-  display: flex;
-  gap: 16px;
-  justify-content: space-around;
-  //margin-top: 50px;
-  //background-color: $black;
-  padding: 0 50px;
+    .category-card {
+      text-align: center;
+      //background-color: $light-gray;
+      border: 2px solid $green;
+      border-radius: 12px;
+      padding: 25px;
+      //width: 280px;
 
-  .category-card {
-    text-align: center;
-    //background-color: $light-gray;
-    border: 2px solid $green;
-    border-radius: 12px;
-    padding: 25px;
-    width: 280px;
+      .category-image {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        margin-bottom: 15px;
+        border-radius: 10px;
+        //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      }
 
-    .category-image {
-      width: 100%;
-      max-width: 350px;
-      height: auto;
-      margin-bottom: 15px;
-      border-radius: 10px;
-      //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-    }
+      h4 {
+        font-family: $headers-font;
+        font-size: 1.6rem;
+        color: $purple;
+        margin: 15px 0;
+      }
 
-    h4 {
-      font-family: $headers-font;
-      font-size: 1.6rem;
-      color: $purple;
-      margin: 15px 0;
-    }
-
-    .btn-home {
-      //background-color: $green;
-      border-color: $green;
-      //color: $black;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-      padding: 10px 20px;
-      border-radius: 8px;
-      &:hover {
-        background-color: black($green, 10%);
+      .btn-home {
+        //background-color: $green;
+        border-color: $green;
+        //color: $black;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+        padding: 10px 20px;
+        border-radius: 8px;
+        &:hover {
+          background-color: black($green, 10%);
+        }
       }
     }
   }
