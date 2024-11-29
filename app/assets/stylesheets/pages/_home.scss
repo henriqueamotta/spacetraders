@@ -9,16 +9,22 @@
   .hero-title {
     font-family: $headers-font;
     font-size: 3.5rem;
-    color: $green;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+    color: #CFD8DC;
+    text-shadow:
+    0 0 10px #00E676,
+    0 0 20px #00E676,
+    0 0 30px rgba(0, 230, 118, 0.6);
     margin-bottom: 20px;
   }
 
   .hero-subtitle {
     font-family: $body-font;
     font-size: 1.6rem;
-    color: $green;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+    color: #CFD8DC;
+    text-shadow:
+    0 0 10px #00E676,
+    0 0 20px #00E676,
+    0 0 30px rgba(0, 230, 118, 0.6);
     margin-bottom: 30px;
   }
 
@@ -49,16 +55,19 @@
 
     .discount {
       font-size: 1.5rem;
-      color: $green;
+      color: #CFD8DC;
+      text-shadow:
+      0 0 10px #00E676,
+      0 0 20px #00E676,
+      0 0 30px rgba(0, 230, 118, 0.6);
       font-weight: bold;
       margin-bottom: 25px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
     }
 
     .btn-primary {
       background-color: $yellow;
       border-color: $yellow;
-      color: $black;
+      color: #CFD8DC;
       font-weight: bold;
       padding: 12px 25px;
       border-radius: 8px;
@@ -130,7 +139,7 @@
     .btn-warning {
       background-color: $yellow;
       border-color: $yellow;
-      color: $black;
+      color: #CFD8DC;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
       font-weight: bold;
       padding: 12px 25px;
