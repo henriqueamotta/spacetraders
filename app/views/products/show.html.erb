@@ -34,6 +34,7 @@
       <li><strong>Passengers:</strong> <span class="font-style"><%= @product.passengers %></span></li>
       <li><strong>Crew:</strong> <span class="font-style"><%= @product.crew %></span></li>
       <li><strong>Manufacturer:</strong> <span class="font-style"><%= @product.manufacturer %></span></li>
+      <li><strong>Seller:</strong> <span class="font-style"><%= @product.user.email.match(/([^@]+)@/)[1] %></span></li>
     </ul>
 
     <h2 class="text-neon">Price: <span class="price"> <%= number_to_currency(@product.price, unit: "BTC ") %></span></h2>
