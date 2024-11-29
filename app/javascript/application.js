@@ -5,10 +5,10 @@ import "bootstrap";
 import "@popperjs/core"
 
 // Importação do objeto application do sistema Stimulus
-import { application } from "./controllers/application";
+// import { application } from "./controllers/application";
 
-// Importação do controller de checkout
-import CheckoutController from "./controllers/checkout_controller";
+// // Importação do controller de checkout
+// import CheckoutController from "./controllers/checkout_controller";
 
-// Registro do controlador de checkout
-application.register("checkout", CheckoutController);
+// // Registro do controlador de checkout
+// application.register("checkout", CheckoutController);
