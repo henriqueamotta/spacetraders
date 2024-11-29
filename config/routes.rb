@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Rotas para produtos
-  resources :products, only: %i[index show new create destroy]
-
+  resources :products
   # Rota para categorias filtradas
   get "products/category/:category", to: "products#index", as: :filtered_products
 
