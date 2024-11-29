@@ -4,10 +4,18 @@ class ProductsController < ApplicationController
   before_action :authorize_user!, only: %i[edit update destroy] # Verifica autorização
 
   def index
-    if params[:category]
-      @products = Product.where(category: params[:category].capitalize)
-    else
-      @products = Product.all
+    @products = Product.all
+
+    if params[:search].present?
+      search_term = params[:search].downcase
+      @products = @products.where(
+      'LOWER(name) LIKE :search OR LOWER(category) LIKE :search',
+      search: "%#{search_term}%"
+      )
+    end
+
+    if params[:category].present?
+      @products = @products.where(category: params[:category].capitalize)
     end
   end
 

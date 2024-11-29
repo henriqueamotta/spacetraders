@@ -1,12 +1,23 @@
 .image-team {
-    display: block; /* Necessário para usar `margin` para centralização */
-    margin: 0 auto; /* Centraliza horizontalmente */
-    max-width: 600px; /* Define o tamanho máximo da largura */
-    height: auto; /* Mantém a proporção da imagem */
+  display: block; /* Faz a imagem ser um bloco */
+  margin: 0 auto; /* Centraliza a imagem */
+  max-width: 70%; /* Garante que a imagem não ultrapasse a largura do contêiner */
+  height: auto; /* Mantém a proporção da imagem */
 }
-
 
 .context {
     margin-bottom: 40px;
+}
 
+.context {
+  margin: 20px; /* Margem em torno do conteúdo */
+  padding: 15px; /* Espaçamento interno */
+  background-color: #121212; /* Fundo claro para destacar o conteúdo */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+h1, h2, h3 {
+  text-align: center; /* Centraliza os títulos */
+  margin: 10px 0; /* Margem vertical */
 }

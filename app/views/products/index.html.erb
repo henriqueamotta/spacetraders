@@ -1,19 +1,16 @@
-<h1 class="text-center text-gold mt-4">PRODUCTS</h1>
-<div class="line mb-4"></div>
-
-<div class="filters mb-4 d-flex justify-content-between">
-  <div>
-    <button class="btn btn-outline-light btn-sm">
-      <i class="fas fa-filter"></i> FILTER
-    </button>
-  </div>
-  <div>
-    <button class="btn btn-outline-light btn-sm">
-      <i class="fas fa-sort"></i> Order
-    </button>
+<div class="row justify-content-center">
+  <div class="col-sm-6 my-5">
+    <%= form_with url: products_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :search,
+            params[:search],
+            class: "form-control",
+            placeholder: "Type a keyword (name or category)"
+        %>
+      <%= submit_tag "Search", name: "", class: "search-product" %>
+    <% end %>
   </div>
 </div>
-
+<h1 class="justify text-center">PRODUCTS</h1>
 <div class="row justify-content-center w-100">
   <% @products.each do |product| %>
     <div class="col-md-5 mb-4">
