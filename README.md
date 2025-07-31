@@ -8,11 +8,9 @@
 An online marketplace built with Ruby on Rails where space enthusiasts can buy and sell intergalactic vehicles, such as starships, droids, and more.
 
 ## Overview
-
 This project is a full-featured web application that simulates an e-commerce platform. Users can register, list their own products (spaceships), browse listings from others, add items to a shopping cart, and complete a purchase. The application was built following Ruby on Rails best practices, featuring a secure authentication system, relational database management, and a reactive user interface.
 
 ## ✨ Key Features
-
 - **User Authentication**: A complete user registration and login system using the `Devise` gem.
 - **Product Management (CRUD)**: Authenticated users can create, read, update, and delete their own vehicle listings.
 - **Multiple Image Uploads**: Integration with `Cloudinary` and `Active Storage` to allow multiple photos per product.
@@ -22,7 +20,6 @@ This project is a full-featured web application that simulates an e-commerce pla
 - **Security and Authorization**: The system ensures that users can only manage the products they have created.
 
 ## 🛠️ Tech Stack
-
 - **Backend**: Ruby `3.3.5`, Ruby on Rails `7.1.5`
 - **Database**: PostgreSQL
 - **Frontend**: Hotwire (Turbo and Stimulus), Importmap, Bootstrap 5, SASS, Font Awesome
@@ -30,8 +27,7 @@ This project is a full-featured web application that simulates an e-commerce pla
 - **File Uploads**: Cloudinary & Active Storage
 - **Web Server**: Puma
 
-## 🚀 Getting Started
-
+## ☝️ Getting Started
 To run this project locally, follow the steps below.
 
 ### Prerequisites
@@ -42,8 +38,7 @@ To run this project locally, follow the steps below.
 - Node.js (for the asset pipeline)
 - A [Cloudinary](https://cloudinary.com/) account
 
-### Installation
-
+### 📁 Installation
 1.  **Clone the repository:**
     ```sh
     git clone [https://github.com/henriqueamotta/spacetraders.git](https://github.com/henriqueamotta/spacetraders.git)
