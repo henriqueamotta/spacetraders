@@ -7,7 +7,7 @@
 
 An online marketplace built with Ruby on Rails where space enthusiasts can buy and sell intergalactic vehicles, such as starships, droids, and more.
 
-## Overview
+## 📖 Overview
 This project is a full-featured web application that simulates an e-commerce platform. Users can register, list their own products (spaceships), browse listings from others, add items to a shopping cart, and complete a purchase. The application was built following Ruby on Rails best practices, featuring a secure authentication system, relational database management, and a reactive user interface.
 
 ## ✨ Key Features
