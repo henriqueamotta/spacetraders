@@ -41,7 +41,7 @@ To run this project locally, follow the steps below.
 ### 📁 Installation
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/henriqueamotta/spacetraders.git](https://github.com/henriqueamotta/spacetraders.git)
+    git clone https://github.com/henriqueamotta/spacetraders.git
     cd spacetraders
     ```
 
