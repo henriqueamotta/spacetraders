@@ -1,0 +1,19 @@
+one:
+  email: 'user_one@example.com'
+  # Esta é a hash bcrypt para a senha 'password'
+  # O Devise precisa disso para o login funcionar nos testes.
+  encrypted_password: '$2a$12$D9.Vq3nO1I7M.Wv.a.A8cu2g.XyW1q/F.qA/E.y.W/g.q8.E/e.qW'
+
+  # Adicione quaisquer outros campos que seu model User tenha
+  # com a restrição 'NOT NULL' no banco de dados.
+  # (Ex: name: 'Test User')
+
+  # É uma boa prática adicionar timestamps
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
+
+two:
+  email: 'user_two@example.com'
+  encrypted_password: '$2a$12$D9.Vq3nO1I7M.Wv.a.A8cu2g.XyW1q/F.qA/E.y.W/g.q8.E/e.qW'
+  created_at: <%= Time.current %>
+  updated_at: <%= Time.current %>
