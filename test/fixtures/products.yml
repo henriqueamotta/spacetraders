@@ -1,0 +1,19 @@
+one:
+  name: "X-Wing"
+  model: "T-65B"
+  manufacturer: "Incom Corporation"
+  price: 150000
+  overview: "The workhorse of the Rebel Alliance."
+  category: "Spaceship"
+  # Associa este produto ao usuário 'one' do arquivo users.yml
+  user: one
+
+two:
+  name: "TIE Fighter"
+  model: "Twin Ion Engine"
+  manufacturer: "Sienar Fleet Systems"
+  price: 90000
+  overview: "Standard Imperial starfighter."
+  category: "Spaceship"
+  # Associa este produto ao usuário 'two' do arquivo users.yml
+  user: two
