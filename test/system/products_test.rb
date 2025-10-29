@@ -7,6 +7,7 @@ class ProductsTest < ApplicationSystemTestCase
     sign_in @user
   end
 
+  # Teste para criar um novo produto
   test "creating a new product" do
     # 1. Navegar para a página
     visit new_product_path
@@ -28,6 +29,7 @@ class ProductsTest < ApplicationSystemTestCase
     assert_text "Corellian Engineering Corporation"
   end
 
+  # Teste para atualizar um produto
   test "updating a product" do
     @product = products(:one)
 
@@ -53,5 +55,28 @@ class ProductsTest < ApplicationSystemTestCase
     assert_text "9,999.00"
   end
 
+  # Teste para deletar um produto
+  test "deleting a product" do
+    # O setup já logou o @user.
+    # O produto 'one' é selecionado dos fixtures.
+    @product = products(:one)
 
+    # Navegação para a página de 'show' do produto
+    visit product_path(@product)
+
+    # ACTION
+    # 1. O Capybara é instruído para aceitar o próximo pop-up de confirmação
+    accept_alert do
+      # 2. O link/botão "Delete Product" é clicado.
+      click_on "Delete Product"
+    end
+
+    # ASSERT
+    # 1. O teste deve ser redirecionado e mostrar a mensagem de sucesso.
+    assert_text "Product was successfully deleted!"
+
+    # 2. O nome do produto não deve mais estar na página
+    # Isso prova que ele foi removido da listagem.
+    assert_no_text "X-Wing" # (O nome do produto 'one' no fixture)
+  end
 end
