@@ -7,6 +7,47 @@ class ProductsTest < ApplicationSystemTestCase
     sign_in @user
   end
 
+  # Teste para visitar a página de listagem de produtos (index)
+  test "visiting the index (product list)" do
+    # O setup já nos logou com @user = users(:one)
+    # Os fixtures já carregaram os produtos 'one' (X-Wing) e 'two' (TIE Fighter)
+
+    # ACTION
+    # 1. Visitar a página de listagem de produtos
+    visit products_path
+
+    assert_text "Shop"
+
+    # 2. Verificar se os produtos dos fixtures estão sendo exibidos (Buscando pelos seus nomes)
+    assert_text "X-Wing"
+    assert_text "TIE Fighter"
+
+    # 3. (Opcional) Verificar se os preços formatados aparecem
+    assert_text "150,000.00" # Preço do X-Wing
+    assert_text "90,000.00"  # Preço do TIE Fighter
+  end
+
+  # Teste para visitar a página de detalhes de um produto (show)
+  test "visiting the show page (product details)" do
+    # O setup já nos logou.
+    # O produto 'one' (X-Wing) é carregado dos fixtures.
+    @product = products(:one)
+
+    # ACTION
+    # 1. Visitar a página de 'show' (detalhes) diretamente.
+    visit product_path(@product)
+
+    # ASSERT
+    # 1. Os detalhes do produto 'one' (X-Wing) devem estar visíveis.
+    assert_text "X-Wing"
+    assert_text "The workhorse of the Rebel Alliance." # Overview
+    assert_text "Incom Corporation"                    # Manufacturer
+
+    # 2. (Importante) NÃO deve ser possível ver detalhes de outros produtos.
+    assert_no_text "TIE Fighter"
+    assert_no_text "Sienar Fleet Systems" # Manufacturer do TIE Fighter
+  end
+
   # Teste para criar um novo produto
   test "creating a new product" do
     # 1. Navegar para a página
