@@ -7,6 +7,26 @@ class ProductsTest < ApplicationSystemTestCase
     sign_in @user
   end
 
+  # Teste para visitar a página de listagem de produtos (index)
+  test "visiting the index (product list)" do
+    # O setup já nos logou com @user = users(:one)
+    # Os fixtures já carregaram os produtos 'one' (X-Wing) e 'two' (TIE Fighter)
+
+    # ACTION
+    # 1. Visitar a página de listagem de produtos
+    visit products_path
+
+    assert_text "Shop"
+
+    # 2. Verificar se os produtos dos fixtures estão sendo exibidos (Buscando pelos seus nomes)
+    assert_text "X-Wing"
+    assert_text "TIE Fighter"
+
+    # 3. (Opcional) Verificar se os preços formatados aparecem
+    assert_text "150,000.00" # Preço do X-Wing
+    assert_text "90,000.00"  # Preço do TIE Fighter
+  end
+
   # Teste para criar um novo produto
   test "creating a new product" do
     # 1. Navegar para a página
