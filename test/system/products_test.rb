@@ -27,6 +27,27 @@ class ProductsTest < ApplicationSystemTestCase
     assert_text "90,000.00"  # Preço do TIE Fighter
   end
 
+  # Teste para visitar a página de detalhes de um produto (show)
+  test "visiting the show page (product details)" do
+    # O setup já nos logou.
+    # O produto 'one' (X-Wing) é carregado dos fixtures.
+    @product = products(:one)
+
+    # ACTION
+    # 1. Visitar a página de 'show' (detalhes) diretamente.
+    visit product_path(@product)
+
+    # ASSERT
+    # 1. Os detalhes do produto 'one' (X-Wing) devem estar visíveis.
+    assert_text "X-Wing"
+    assert_text "The workhorse of the Rebel Alliance." # Overview
+    assert_text "Incom Corporation"                    # Manufacturer
+
+    # 2. (Importante) NÃO deve ser possível ver detalhes de outros produtos.
+    assert_no_text "TIE Fighter"
+    assert_no_text "Sienar Fleet Systems" # Manufacturer do TIE Fighter
+  end
+
   # Teste para criar um novo produto
   test "creating a new product" do
     # 1. Navegar para a página
