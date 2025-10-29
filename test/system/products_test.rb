@@ -11,7 +11,7 @@ class ProductsTest < ApplicationSystemTestCase
     # 1. Navegar para a página
     visit new_product_path
 
-    # ... (resto do seu teste) ...
+    # ... (resto do teste) ...
 
     fill_in "Name", with: "Millennium Falcon"
     fill_in "Model", with: "YT-1300 light freighter"
@@ -27,4 +27,31 @@ class ProductsTest < ApplicationSystemTestCase
     assert_text "Millennium Falcon"
     assert_text "Corellian Engineering Corporation"
   end
+
+  test "updating a product" do
+    @product = products(:one)
+
+    # ACTION
+    # 1. Visitar a página de edição do produto
+    visit edit_product_path(@product)
+
+    # 2. Mudar alguns dados no formulário
+    fill_in "Name", with: "Updated Product Name"
+    fill_in "Price", with: 9999
+
+    attach_file "product_photos", Rails.root.join("test/fixtures/files/image.png")
+
+    # 3. Clicar no botão "Submit"
+    click_on "Submit"
+
+    # ASSERT
+    # 1. Verificar a mensagem flash de sucesso
+    assert_text "Product was successfully updated"
+
+    # 2. Verificar se os dados novos estão na página (show)
+    assert_text "Updated Product Name"
+    assert_text "9,999.00"
+  end
+
+
 end
