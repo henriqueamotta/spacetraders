@@ -1,60 +1,75 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: #512DA8;
-}
+// Variáveis de Cor
+$navbar-purple: #512DA8;
+$navbar-text:   #CFD8DC;
+$navbar-hover:  #00E676;
+$navbar-yellow: #FDEE00; // (Amarelo do carrinho)
+$navbar-font:   'Michroma', sans-serif;
+$navbar-text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
+.navbar-spacetraders {
+  background-color: $navbar-purple;
+  border-bottom: 1px solid darken($navbar-purple, 10%);
+  font-family: $navbar-font;
 
-.navbar-lewagon .navbar-brand img {
-  width: 300px;
-}
+  // --- LOGO (Esquerda) ---
+  .navbar-brand img {
+    height: 60px; // Ajuste conforme necessário
+    width: auto;
+  }
 
-.navbar-cart {
-  height: 35px;
-  width: auto;
-  display: inline-block;
-  vertical-align: middle;
-}
+  // --- LINKS (Centro) ---
+  .navbar-nav.mx-auto {
+    .nav-link {
+      color: $navbar-text;
+      text-shadow: $navbar-text-shadow;
+      font-size: small;
+      padding: 0 4rem; // Espaçamento entre os links
+      transition: color 0.2s ease;
 
-.btn-primary {
-  background-color: #512DA8;
-  border: none;
-  box-shadow: none;
-  font-family: 'Michroma', sans-serif;
-  font-size: small;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-  color: #CFD8DC;
-}
+      &:hover {
+        color: $navbar-hover;
+      }
+    }
+  }
 
-.btn-primary:hover {
-  background-color: #512DA8;
-  color: #00E676;
-}
+  // --- ÍCONES (Direita) ---
+  .navbar-icons {
+    .nav-link {
+      font-size: 1.5rem;
+      padding: 0 0.5rem;
+      color: $navbar-text;
+      transition: color 0.2s ease;
+      text-shadow: $navbar-text-shadow;
 
-.nav-item {
-  font-family: 'Michroma', sans-serif;
-  font-size: small;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-  color: white;
-}
+      &:hover {
+        color: $navbar-hover;
+      }
+    }
 
-.nav-item:hover {
-color:#00E676;
-}
+    // Ícone do Carrinho (amarelo)
+    .fa-cart-shopping {
+      color: $navbar-yellow;
+    }
 
-.nav-link {
-  background-color: #512DA8;
-  border: none;
-  box-shadow: none;
-  font-family: 'Michroma', sans-serif;
-  font-size: small;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-  color: #CFD8DC;
-}
+    // Ícone do Usuário
+    .fa-user {
+      color: black;
+      background-color: #8a63e6;
+      border-radius: 50%;
+      padding: 4px;
+      font-size: 1.3rem;
+      text-shadow: none; // Remover a sombra daqui
+    }
 
-.nav-link:hover {
-  background-color: #512DA8;
-  color: #00E676;
+    .dropdown-menu {
+      margin-top: 10px;
+    }
+  }
+
+  // --- Cor do Toggler (Hambúrguer) ---
+  .navbar-toggler {
+    .navbar-toggler-icon {
+      filter: invert(1) brightness(2); // Deixa o ícone branco
+    }
+  }
 }
