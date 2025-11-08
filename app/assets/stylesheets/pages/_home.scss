@@ -49,10 +49,18 @@ $body-font: 'Michroma', sans-serif;
     border: 6px solid $purple;
     padding: 0.5rem;
 
-    > div {
+    .featured-text {
       flex: 1;
       text-align: left;
       padding-right: 1.25rem;
+    }
+
+    .featured-image-container {
+      flex: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .featured-image {
@@ -81,27 +89,39 @@ $body-font: 'Michroma', sans-serif;
       margin-bottom: 1.5625rem;
       font-size: clamp(0.9rem, calc(0.8rem + 0.5vw), 1.1rem);
     }
-    .btn-primary {
-      background-color: $yellow;
-      border-color: $yellow;
-      color: #CFD8DC;
-      font-weight: bold;
-      padding: 0.75rem 1.5625rem;
-      border-radius: 8px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-      &:hover {
-        background-color: darken($yellow, 10%);
-      }
-    }
   }
 }
+
+.featured-product .btn-discreet {
+  position: absolute;           // 1. Faz o botão "flutuar"
+  bottom: 2rem;                 // 2. Posição vertical (perto do fundo, ajustado)
+  left: 50%;                    // 3. Move o início do botão para o meio do container
+  transform: translateX(-40%);  // 4. Puxa o botão 40% (do seu próprio tamanho) para a esquerda (ajustado)
+  // --------------------------
+
+  color: $navbar-text;
+  border: 1px solid $navbar-text;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: $body-font;
+  transition: all 0.2s ease-in-out;
+  background-color: $black; // Fundo preto para legibilidade
+
+  &:hover {
+    color: $black;
+    background-color: $navbar-hover;
+    border-color: $navbar-hover;
+  }
+}
+
 
 // Features Section
 .features-section {
   color: $light-gray;
   margin-bottom: 3.125rem;
 
-  // --- CTA (Coluna 1) ---
   .cta {
     text-align: center;
     padding: 1.25rem;
@@ -126,7 +146,6 @@ $body-font: 'Michroma', sans-serif;
     }
   }
 
-  // --- Cards de Categoria (Coluna 2) ---
   .categories-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -167,7 +186,6 @@ $body-font: 'Michroma', sans-serif;
     }
   }
 
-  // --- "Why Choose Us?" Horizontal ---
   .why-us-horizontal {
     border: 2px solid $purple;
     border-radius: 12px;

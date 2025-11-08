@@ -3,18 +3,33 @@
   <h1 class="hero-title">The Universe's Largest Marketplace!</h1><br>
 
   <div class="featured-product">
-    <div>
+
+    <%# Coluna da Esquerda (Texto) %>
+    <div class="featured-text">
       <p class="hero-subtitle">Hot Deals from Across the Universe!</p><br>
       <h2 class="product-title">Lando's Millenium Falcon</h2><br>
       <p class="product-subtitle">... and more!</p>
+      <%# REMOVEMOS o botão "VIEW DETAILS" daqui %>
     </div>
-    <%= image_tag("landosmillennium.png",
-      transformation: { width: 1000, crop: "limit" },
-      alt: "Lando's Millennium Falcon",
-      class: "featured-image",
-      height: 450,
-      crop: "fit")
-    %>
+
+    <%# Coluna da Direita (Imagem + Novo Botão) %>
+    <div class="featured-image-container">
+      <%= image_tag("landosmillennium.png",
+        transformation: { width: 1000, crop: "limit" },
+        alt: "Lando's Millennium Falcon",
+        class: "featured-image",
+        height: 450,
+        crop: "fit")
+      %>
+
+      <%# O novo botão "discreto" %>
+      <%# ATENÇÃO: Estamos hard-coding ID 88. Se o seu seed mudar, isso pode quebrar. %>
+      <% product = Product.find_by(id: 88) %>
+      <% if product %>
+        <%= link_to "View Details", product_path(product), class: "btn btn-discreet" %>
+      <% end %>
+    </div>
+
   </div>
 </div>
 
