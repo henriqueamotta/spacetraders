@@ -14,22 +14,28 @@
 <div class="row justify-content-center">
   <% @products.each do |product| %>
     <div class="col-md-4 mb-4">
-      <div class="card product-card bg-dark text-light h-100"> <%# Adicionado h-100 (height 100%) para alinhar os cards %>
+      <div class="card product-card bg-dark text-light h-100">
         <% if product.photos.attached? %>
           <div class="card-img-top text-center">
             <%= cl_image_tag product.photos.first.key, class: "product-image" %>
           </div>
         <% end %>
-        <div class="card-body text-center d-flex flex-column"> <%# Adicionado d-flex para alinhar o conteúdo %>
+        <div class="card-body text-center d-flex flex-column">
           <h5 class="product-title"><%= product.name %></h5>
+
+          <p class="product-seller mb-2">
+            <small>Sold by: <%= link_to product.user.username, "#", class: "seller-link" %></small>
+          </p>
+
           <div class="line my-2"></div>
           <p class="product-description"><%= product.overview.truncate(100) %></p>
 
-          <%# Empurra os botões para baixo %>
           <div class="mt-auto">
             <p class="product-price"><%= number_to_currency(product.price, unit: "BTC ") %></p>
             <div class="d-flex justify-content-center mt-3">
-              <%= button_to "Buy Now", add_to_cart_path(product), method: :post, class: "btn btn-buy me-2" %>
+
+              <%= button_to "Add to Cart", add_to_cart_path(product), method: :post, class: "btn btn-buy me-2" %>
+
               <%= link_to "Details", product_path(product), class: "btn btn-details" %>
             </div>
           </div>
