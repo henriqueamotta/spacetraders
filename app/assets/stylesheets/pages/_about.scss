@@ -1,23 +1,66 @@
-.image-team {
-  display: block; /* Faz a imagem ser um bloco */
-  margin: 0 auto; /* Centraliza a imagem */
-  max-width: 70%; /* Garante que a imagem não ultrapasse a largura do contêiner */
-  height: auto; /* Mantém a proporção da imagem */
+// Container principal da página "About Us"
+.about-page-wrapper {
+  margin: 1.25rem 0;
+  padding: 1rem;
+  background-color: #121212;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.context {
-    margin-bottom: 40px;
+// Estilo para o parágrafo de introdução
+.about-intro {
+  font-size: 1.1rem;
+  font-style: italic;
+  text-align: center;
+  line-height: 1.6;
+  margin: 1.5rem 2rem;
 }
 
-.context {
-  margin: 20px; /* Margem em torno do conteúdo */
-  padding: 15px; /* Espaçamento interno */
-  background-color: #121212; /* Fundo claro para destacar o conteúdo */
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+// Estilo para as seções de conteúdo
+.about-section {
+  margin-top: 3.5rem;
+
+  // Estilos para os parágrafos normais
+  p {
+    font-size: 1rem;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  // Estilos para a lista
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 1.5rem;
+
+    h4 {
+      text-align: left;
+      color: $purple;
+    }
+
+    p {
+      margin-left: 2rem;
+      text-align: left;
+    }
+  }
 }
 
-h1, h2, h3 {
-  text-align: center; /* Centraliza os títulos */
-  margin: 10px 0; /* Margem vertical */
+// Estilos para as notas de rodapé
+.about-note {
+  font-style: italic;
+  text-align: center;
+  border-top: 1px solid $green;
+  padding-top: 1.5rem;
+}
+
+.about-tagline {
+  font-family: $headers-font;
+  font-size: 1.25rem;
+  text-align: center;
+  color: $green;
+  margin-top: 1.5rem;
+  text-align-last: center;
 }
