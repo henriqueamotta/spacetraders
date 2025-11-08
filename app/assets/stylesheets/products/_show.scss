@@ -1,28 +1,48 @@
 .product-image-carousel {
-    width: 100%; /* Limita a largura */
-    height: 400px; /* Mantém a proporção */
-    object-fit: contain; /*impede que a imagem distorçida */
-    //  background-color: #fff;
+  width: 100%;
+  max-height: 500px; // Define um teto de altura
+  aspect-ratio: 4 / 3; // Força uma proporção
+  object-fit: contain;
+  background-color: white; // Fundo branco para imagens 'contain'
 }
 
 
 .product-overview {
-    color: #512DA8;
-    font-family: 'Michroma', sans-serif;
-    font-size: 15px;
+  color: #512DA8;
+  font-family: 'Michroma', sans-serif;
+  font-size: 15px;
+  text-align: justify;
+  line-height: 1.6;
 }
 
-.product-specs {
-    list-style-type: none ;
+.product-specs.list-group {
+  .list-group-item {
+    background-color: transparent; // Fundo do container
+    color: #CFD8DC; // (Cor de texto padrão do seu app)
+    border-color: rgba(255, 255, 255, 0.1); // Linha divisória sutil
+    padding-left: 0;
+  }
 }
 
 
 .font-style {
-    color: #512DA8;
-    font-family: 'Michroma', sans-serif;
-    font-size: 15px;
+  color: #512DA8;
+  font-family: 'Michroma', sans-serif;
+  font-size: 15px;
 }
 
 .price {
-    color: #FFC300;
+  color: #FFC300;
+}
+
+// Estilo para o link do vendedor (Trader)
+.seller-link {
+  color: $green;
+  font-family: $headers-font;
+  text-decoration: none;
+  font-weight: bold;
+  &:hover {
+    color: darken($green, 15%);
+    text-decoration: underline;
+  }
 }

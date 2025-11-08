@@ -6,4 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def username
+    self.email.match(/([^@]+)@/)[1] # Extrai o nome de usuário do email
+  end
 end
