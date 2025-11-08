@@ -1,70 +1,80 @@
+<%# 1. Seção "Hero" (Título e Produto em Destaque) %>
+<div class="hero-section">
+  <h1 class="hero-title">The Universe's Largest Marketplace!</h1><br>
 
-  <div class="hero-section">
-    <h1 class="hero-title">The Universe's Largest Marketplace!</h1>
-
-    <div class="featured-product">
-      <div>
-        <p class="hero-subtitle">Hot Deals from Across the Universe!</p>
-        <h2 class="product-title">Lando's Millenium Falcon</h2>
-        <p class="discount">20% OFF</p>
-        <%= link_to "VIEW DETAILS", product_path(1), class: "btn btn-primary" %>
-      </div>
-      <%= image_tag("landosmillennium.png",
-        transformation: { width: 1000, crop: "limit" },
-        alt: "Lando's Millennium Falcon",
-        class: "featured-image",
-        height: 450,
-        crop: "fit") %>
+  <div class="featured-product">
+    <div>
+      <p class="hero-subtitle">Hot Deals from Across the Universe!</p><br>
+      <h2 class="product-title">Lando's Millenium Falcon</h2><br>
+      <p class="product-subtitle">... and more!</p>
     </div>
+    <%= image_tag("landosmillennium.png",
+      transformation: { width: 1000, crop: "limit" },
+      alt: "Lando's Millennium Falcon",
+      class: "featured-image",
+      height: 450,
+      crop: "fit")
+    %>
   </div>
+</div>
 
-  <div class="features-section">
-    <div class="cta">
-      <h3>Join the Galactic Marketplace Today!</h3>
-      <%= link_to "SIGN UP NOW", new_user_registration_path, class: "btn btn-warning" %>
+<%# 2. Seção "Features" %>
+<div class="features-section">
+
+  <%# --- LINHA SUPERIOR (CTA + Cards) --- %>
+  <div class="row align-items-center mb-4">
+
+    <%# Coluna 1: CTA %>
+    <div class="col-md-4">
+      <div class="cta">
+        <h3>Join the Galactic Marketplace Today!</h3>
+        <%= link_to "SIGN UP NOW", new_user_registration_path, class: "btn btn-warning" %>
+      </div>
     </div>
-    <div class="categories-section">
-      <div class="category-card">
-        <div class="why-us">
-          <h3>Why Choose Us?</h3>
-          <ul>
-            <li>✅ Authentic Galactic Merchandise</li>
-            <li>✅ Trusted by Rebels and Empires Alike</li>
-            <li>✅ Interestellar Shipping to Any Planet</li>
-          </ul>
+
+    <%# Coluna 2: Cards de Categoria (Bootstrap Grid) %>
+    <div class="col-md-8">
+      <div class="categories-section">
+        <div class="row">
+          <div class="col-md-4"> <%# Card 1 %>
+            <div class="category-card">
+              <%= image_tag("droids.png", { transformation: { width: 350, crop: "limit" }, alt: "Star Wars Droids", class: "category-image", height: 300, crop: "fit"}) %>
+              <h4>DROIDS</h4>
+              <%= link_to "VIEW DETAILS", filtered_products_path(category: "droids"), class: "btn btn-home"%>
+            </div>
+          </div>
+          <div class="col-md-4"> <%# Card 2 %>
+            <div class="category-card">
+              <%= image_tag("atat.png", { transformation: { width: 350, crop: "limit" }, alt: "AT-AT Walker", class: "category-image", height: 300, crop: "fit"}) %>
+              <h4>VEHICLES</h4>
+              <%= link_to "VIEW DETAILS", filtered_products_path(category: "vehicles"), class: "btn btn-home"%>
+            </div>
+          </div>
+          <div class="col-md-4"> <%# Card 3 %>
+            <div class="category-card">
+              <%= image_tag("xwing.png", { transformation: { width: 350, crop: "limit" }, alt: "X-Wing Starfighter", class: "category-image", height: 300, crop: "fit"}) %>
+              <h4>SPACESHIPS</h4>
+              <%= link_to "VIEW DETAILS", filtered_products_path(category: "spaceships"), class: "btn btn-home"%>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="categories-section">
-      <div class="category-card">
-        <%= image_tag("droids.png",
-          transformation: { width: 350, crop: "limit" },
-          alt: "Star Wars Droids",
-          class: "category-image",
-          height: 300,
-          crop: "fit") %>
-        <h4>DROIDS</h4>
-        <%= link_to "VIEW DETAILS", filtered_products_path(category: "droids"), class: "btn btn-home"%>
-      </div>
-      <div class="category-card">
-        <%= image_tag("atat.png",
-          transformation: { width: 350, crop: "limit" },
-          alt: "AT-AT Walker",
-          class: "category-image",
-          height: 300,
-          crop: "fit") %>
-        <h4>VEHICLES</h4>
-        <%= link_to "VIEW DETAILS", filtered_products_path(category: "vehicles"), class: "btn btn-home"%>
-      </div>
-      <div class="category-card">
-        <%= image_tag("xwing.png",
-          transformation: { width: 350, crop: "limit" },
-          alt: "X-Wing Starfighter",
-          class: "category-image",
-          height: 300,
-          crop: "fit") %>
-        <h4>SPACESHIPS</h4>
-        <%= link_to "VIEW DETAILS", filtered_products_path(category: "spaceships"), class: "btn btn-home"%>
+  </div> <%# --- Fim da Linha Superior --- %>
+
+
+  <%# --- LINHA INFERIOR (Why Choose Us? Horizontal) --- %>
+  <div class="row">
+    <div class="col-12">
+      <div class="why-us-horizontal">
+        <h3>Why Choose Us?</h3>
+        <ul>
+          <li>Authentic Galactic Merchandise</li>
+          <li>Trusted by Rebels and Empires Alike</li>
+          <li>Interestellar Shipping to Any Planet</li>
+        </ul>
       </div>
     </div>
-  </div>
+  </div> <%# --- Fim da Linha Inferior --- %>
+
+</div> <%# --- Fim da 'features-section' --- %>

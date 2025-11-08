@@ -1,75 +1,92 @@
+// Variáveis de Cor (para fácil customização)
+$navbar-purple: #512DA8;
+$navbar-text:   #CFD8DC;
+$navbar-hover:  #00E676;
+$navbar-yellow: #FDEE00;
+$navbar-font:   'Michroma', sans-serif;
+$navbar-text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+// Adicionando as cores do CSS antigo
+$black: #000;
+$light-gray: #CFD8DC;
+$purple: #512DA8;
+$green: #00E676;
+$yellow: #FDEE00;
+$headers-font: 'Michroma', sans-serif;
+$body-font: 'Michroma', sans-serif;
+
 // Hero Section
 .hero-section {
-
   text-align: center;
-  background-color: $black;
   color: $light-gray;
-  padding: 60px 0;
+  padding: 3.75rem 0;
 
   .hero-title {
     font-family: $headers-font;
-    font-size: 3.5rem;
+    font-size: 3rem;
     color: #CFD8DC;
     text-shadow:
-    0 0 10px #00E676,
-    0 0 20px #00E676,
-    0 0 30px rgba(0, 230, 118, 0.6);
-    margin-bottom: 20px;
+      0 0 10px #00E676,
+      0 0 20px #00E676,
+      0 0 30px rgba(0, 230, 118, 0.6);
+    margin-bottom: 1.25rem;
   }
-
   .hero-subtitle {
     font-family: $body-font;
     font-size: 1.6rem;
     color: #CFD8DC;
+    text-align: center;
     text-shadow:
-    0 0 10px #00E676,
-    0 0 20px #00E676,
-    0 0 30px rgba(0, 230, 118, 0.6);
-    margin-bottom: 30px;
-  }
-
-  .featured-product {
-    display: flex;
-    align-items: center;
-    margin-top: 30px;
-    border: 6px solid $purple;
-
-    .featured-image {
-      //width: 100%;
-      //object-fit: contain;
-      //max-width: 1000px;
-      height: 50vh;
-      margin: 0 auto;
-      border-radius: 12px;
-      object-fit: cover;
-      //box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-    }
-
-    .product-title {
-      font-size: 2.2rem;
-      font-weight: bold;
-      color: $yellow;
-      margin-top: 15px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-    }
-
-    .discount {
-      font-size: 1.5rem;
-      color: #CFD8DC;
-      text-shadow:
       0 0 10px #00E676,
       0 0 20px #00E676,
       0 0 30px rgba(0, 230, 118, 0.6);
-      font-weight: bold;
-      margin-bottom: 25px;
+    margin-bottom: 1.875rem;
+  }
+  .featured-product {
+    background-color: $black;
+    display: flex;
+    align-items: center;
+    margin-top: 1.875rem;
+    border: 6px solid $purple;
+    padding: 0.5rem;
+
+    > div {
+      flex: 1;
+      text-align: left;
+      padding-right: 1.25rem;
     }
 
+    .featured-image {
+      height: auto;
+      max-height: 50vh;
+      max-width: 100%;
+      width: auto;
+      margin: 0;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+    .product-title {
+      font-weight: bold;
+      color: $yellow;
+      margin-top: 0.9375rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+      font-size: clamp(1.5rem, calc(1rem + 2vw), 2.2rem);
+    }
+    .product-subtitle {
+      color: #CFD8DC;
+      text-align: center;
+      text-shadow:
+        0 0 10px #00E676,
+        0 0 20px #00E676,
+        0 0 30px rgba(0, 230, 118, 0.6);
+      margin-bottom: 1.5625rem;
+      font-size: clamp(0.9rem, calc(0.8rem + 0.5vw), 1.1rem);
+    }
     .btn-primary {
       background-color: $yellow;
       border-color: $yellow;
       color: #CFD8DC;
       font-weight: bold;
-      padding: 12px 25px;
+      padding: 0.75rem 1.5625rem;
       border-radius: 8px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
       &:hover {
@@ -81,66 +98,25 @@
 
 // Features Section
 .features-section {
-  //display: flex;
-  //justify-content: space-between;
-  // background-color: $purple;
-  display: grid;
-  grid-template-columns: 1fr 1fr 3fr;
-  //padding: 50px;
   color: $light-gray;
-  margin-bottom: 50px;
-  align-items: center;
+  margin-bottom: 3.125rem;
 
-  .why-us {
-    flex: 1;
-    padding: 20px;
-
-    h3 {
-      font-family: $headers-font;
-      font-size: 2rem;
-      margin-bottom: 25px;
-      color: $yellow;
-      text-align: center;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-
-      li {
-        font-family: $body-font;
-        font-size: 1.2rem;
-        margin-bottom: 15px;
-        line-height: 1.5;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-        &:before {
-          content: '✔';
-          color: $green;
-          margin-right: 10px;
-        }
-      }
-    }
-  }
-
+  // --- CTA (Coluna 1) ---
   .cta {
-    flex: 1;
     text-align: center;
-    padding: 20px;
-
+    padding: 1.25rem;
     h3 {
       font-family: $headers-font;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, calc(1.2rem + 1vw), 2rem);
       color: $yellow;
-      margin-bottom: 25px;
+      margin-bottom: 1.5625rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+      word-wrap: break-all;
     }
-
     .btn-warning {
       background-color: $yellow;
       border-color: $yellow;
-      color: #CFD8DC;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+      color: $black;
       font-weight: bold;
       padding: 12px 25px;
       border-radius: 8px;
@@ -149,50 +125,80 @@
       }
     }
   }
-  // Categories Section
+
+  // --- Cards de Categoria (Coluna 2) ---
   .categories-section {
-    height: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 16px;
-    justify-content: space-around;
-    //margin-top: 50px;
-    //background-color: $black;
-    padding: 0 50px;
+    height: 100%;
 
     .category-card {
       text-align: center;
-      //background-color: $light-gray;
       border: 2px solid $green;
       border-radius: 12px;
-      padding: 25px;
-      //width: 280px;
+      padding: 1.5625rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: auto;
 
       .category-image {
         width: 100%;
-        max-width: 350px;
+        max-width: 150px;
         height: auto;
-        margin-bottom: 15px;
+        margin-bottom: 0.9375rem;
         border-radius: 10px;
-        //box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
       }
-
       h4 {
         font-family: $headers-font;
-        font-size: 1.6rem;
+        font-size: clamp(1rem, calc(0.8rem + 1vw), 1.4rem);
         color: $purple;
-        margin: 15px 0;
+        margin: 0.9375rem 0;
       }
-
       .btn-home {
-        //background-color: $green;
         border-color: $green;
-        //color: $black;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
-        padding: 10px 20px;
+        padding: 0.625rem 1.25rem;
         border-radius: 8px;
-        &:hover {
-          background-color: black($green, 10%);
-        }
+        &:hover { background-color: darken($green, 15%); }
+      }
+    }
+  }
+
+  // --- "Why Choose Us?" Horizontal ---
+  .why-us-horizontal {
+    border: 2px solid $purple;
+    border-radius: 12px;
+    padding: 1.5625rem;
+    text-align: center;
+
+    h3 {
+      font-family: $headers-font;
+      font-size: 2rem;
+      margin-bottom: 1.5625rem;
+      color: $yellow;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    li {
+      font-family: $body-font;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 3.5);
+
+      &:before {
+        content: '✔';
+        color: $green;
+        margin-right: 0.625rem;
       }
     }
   }
