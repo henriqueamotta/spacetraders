@@ -164,10 +164,10 @@ $body-font: 'Michroma', sans-serif;
       height: auto;
 
       .category-image {
-        width: 100%;
-        max-width: 150px;
+        width: 150%; // Ajuste para imagens maiores
+        max-width: 500px; // Limite máximo de largura
         height: auto;
-        margin-bottom: 0.9375rem;
+        margin-bottom: -2rem;
         border-radius: 10px;
       }
       h4 {
