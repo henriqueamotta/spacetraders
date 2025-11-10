@@ -34,7 +34,6 @@ $body-font: 'Michroma', sans-serif;
     font-family: $body-font;
     font-size: 1.6rem;
     color: #CFD8DC;
-    text-align: center;
     text-shadow:
       0 0 10px #00E676,
       0 0 20px #00E676,
@@ -51,7 +50,7 @@ $body-font: 'Michroma', sans-serif;
 
     .featured-text {
       flex: 1;
-      text-align: left;
+      text-align: center;
       padding-right: 1.25rem;
     }
 
@@ -81,7 +80,6 @@ $body-font: 'Michroma', sans-serif;
     }
     .product-subtitle {
       color: #CFD8DC;
-      text-align: center;
       text-shadow:
         0 0 10px #00E676,
         0 0 20px #00E676,
