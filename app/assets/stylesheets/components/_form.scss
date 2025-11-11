@@ -1,79 +1,71 @@
+@import "config/colors";
+@import "config/fonts";
+
+// Estilos para o formulário de produtos
 .product-form-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
-  margin: 50px auto;
-  max-width: 1200px;
-  border: 2px solid #00E676; /* Cor da borda verde */
-  border-radius: 10px;
-  background-color: #121212; /* Fundo escuro */
-  box-shadow:  0 4px 15px rgba(81, 45, 168, 0.8);
+  gap: 1.25rem;
+  padding: 1.25rem;
+  margin: 3.125rem auto;
+  max-width: 75rem;
+  border: 2px solid $green;
+  border-radius: 0.625rem;
+  background-color: $black;
+  box-shadow: 0 0.25rem 0.9375rem rgba(81, 45, 168, 0.8);
 }
 
+// Coluna do formulário
 .form-column {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 0.9375rem;
 
   .custom-input,
   .custom-textarea,
   .custom-select {
-    background-color: #121212; /* Fundo dos inputs */
-    border: 2px solid #00E676; /* Borda personalizada */
-    border-radius: 5px;
-    color: #CFD8DC;
-    padding: 10px;
-    font-size: 14px;
+    background-color: $black;
+    border: 2px solid $green;
+    border-radius: 0.3125rem;
+    color: $light-gray;
+    padding: 0.625rem;
+    font-size: 0.875rem;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
 
     &:focus {
-      border-color: #aafaff; /* Destaque ao focar */
+      border-color: #aafaff;
       outline: none;
     }
   }
 }
 
+// Estilos para o botão de submissão
 .form-footer {
-  margin-top: 20px;
-
-  .btn-submit {
-    background-color: #ffc300; /* Amarelo do botão */
-    color: #512DA8; /* Texto roxo */
-    border: none;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: #ffdb4d; /* Amarelo mais claro */
-      box-shadow: 0 4px 10px rgba(255, 195, 0, 0.6);
-    }
-  }
+  margin-top: 1.25rem;
 }
 
+// Título do formulário com ícone
 .title-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   font-weight: 300;
 
   i {
-    font-size: 20px; /* Tamanho do ícone */
-    color: #00E676; /* Verde */
-    margin-bottom: 20px;
-    margin-top: 10px;
+    font-size: 1.25rem;
+    color: $green;
+    margin-bottom: 1.25rem;
+    margin-top: 0.625rem;
   }
 }
 
+// Estilo do título com sombra
 .title-shadow {
-  font-size: 36px; /* Tamanho do texto */
-  color: #CFD8DC; /* Cor do texto */
-  text-shadow: 0px 4px 8px rgba(0, 230, 118, 0.8), /* Sombra verde */
-               0px 0px 15px rgba(128, 0, 128, 0.8); /* Sombra roxa */
+  font-size: 2.25rem;
+  color: $light-gray;
+  text-shadow: 0px 4px 8px rgba(0, 230, 118, 0.8),
+               0px 0px 15px rgba(128, 0, 128, 0.8);
 }
