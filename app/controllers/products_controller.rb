@@ -1,57 +1,70 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
-  before_action :set_product, only: %i[show edit update destroy]
-  before_action :authorize_user!, only: %i[edit update destroy] # Verifica autorização
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    @products = Product.all
+    # 1. Aplicando o 'Scope' (da Policy)
+    # Isso automaticamente chama o Scope.resolve (para não mostrar os produtos do próprio usuário)
+    @products = policy_scope(Product)
 
+    # Filtro de busca simples
     if params[:search].present?
-      search_term = params[:search].downcase
-      @products = @products.where(
-      'LOWER(name) LIKE :search OR LOWER(category) LIKE :search',
-      search: "%#{search_term}%"
-      )
+      @products = @products.where("name ILIKE ?", "%#{params[:search]}%")
     end
+  end
 
-    if params[:category].present?
-      @products = @products.where(category: params[:category].capitalize)
-    end
+  def show
+    @product = Product.find(params[:id])
+    # 2. Autorizando a ação 'show?'
+    # (Pundit checa 'show?' na ProductPolicy. Como é 'true', ele permite)
+    authorize @product
   end
 
   def new
     @product = Product.new
-  end
-
-  def show
+    # 3. Autorizando a ação 'create?'
+    # (Pundit checa 'create?'. Se o usuário não estiver logado, ele dará erro)
+    authorize @product
   end
 
   def create
     @product = Product.new(product_params)
-    @product.user = current_user # Associa produto ao usuário logado
+    @product.user = current_user
+    # 4. Autorizando a ação 'create?' (igual ao 'new')
+    authorize @product
 
     if @product.save
-      redirect_to @product, notice: 'Product was successfully added!'
+      redirect_to @product, notice: "Product was successfully added!"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    @product = Product.find(params[:id])
+    # 5. Autorizando a ação 'update?'
+    # (Pundit checa 'update?'. Se user != record.user, ele dará erro)
+    authorize @product
   end
 
   def update
-    if @product.update(product_params) # Atualiza o produto com os novos dados do formulário
-      redirect_to @product, notice: 'Product was successfully updated!'
+    @product = Product.find(params[:id])
+    # 6. Autorizando a ação 'update?'
+    authorize @product
+
+    if @product.update(product_params)
+      redirect_to @product, notice: "Product was successfully updated!"
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    authorize_user! # verificação de autorização do usuário
+    @product = Product.find(params[:id])
+    # 7. Autorizando a ação 'destroy?'
+    authorize @product
+
     @product.destroy
-    redirect_to products_path, notice: 'Product was successfully deleted!'
+    redirect_to products_path, notice: "Product was successfully deleted!"
   end
 
   def add_to_cart
