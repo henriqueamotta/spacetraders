@@ -1,0 +1,96 @@
+@import "config/colors";
+@import "config/fonts";
+
+.checkout-page {
+
+  // Títulos das seções (DELIVERY, PAYMENT, YOUR CART)
+  h3 {
+    font-family: $headers-font;
+    color: $green; // Título verde
+    font-size: 1.5rem;
+    margin-top: 2rem; // Mais espaço vertical
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba($green, 0.3); // Linha divisória sutil
+    padding-bottom: 0.5rem;
+  }
+
+  // Estiliza os inputs (Planet, Address)
+  .custom-input {
+    background-color: $black;
+    border: 2px solid $purple; // Borda roxa
+    border-radius: 0.3125rem;
+    color: $light-gray;
+    padding: 0.625rem;
+
+    &:focus {
+      border-color: #aafaff;
+      outline: none;
+    }
+  }
+
+  // Estiliza os Radio Buttons de Frete
+  .form-check {
+    margin-bottom: 0.75rem;
+    .form-check-input {
+      background-color: $black;
+      border-color: $purple;
+      &:checked {
+        background-color: $green;
+        border-color: $green;
+      }
+    }
+    .form-check-label {
+      color: $light-gray;
+      font-family: $body-font;
+    }
+  }
+
+  // Estiliza o campo de cópia do BTC
+  .copy-btn {
+    background-color: $light-gray;
+    color: $black;
+    font-family: $body-font;
+  }
+
+  // Estiliza o botão de confirmar pedido
+  .btn-primary {
+    background-color: $yellow;
+    color: $purple;
+    font-family: $headers-font;
+    font-weight: bold;
+    width: 100%; // Botão largo
+    padding: 0.75rem;
+    font-size: 1.2rem;
+  }
+}
+
+// Resumo do Pedido (Coluna da Direita)
+.order-summary {
+  background-color: $black;
+  border: 2px solid $purple;
+  border-radius: 0.625rem;
+  padding: 1.5rem;
+  box-shadow: 0 0.25rem 0.9375rem rgba(81, 45, 168, 0.8);
+  margin-top: 2rem;
+
+  // Lista de produtos no carrinho
+  .list-group-item {
+    background-color: transparent;
+    color: $light-gray;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  // Texto do Subtotal, Frete, Total
+  p {
+    font-size: 1.1rem;
+    color: $light-gray;
+    font-family: $body-font;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .text-neon { // (O Total)
+    color: $yellow;
+    font-weight: bold;
+  }
+}

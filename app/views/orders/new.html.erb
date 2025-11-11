@@ -1,14 +1,16 @@
-<div class="title-container mt-4">
-  <h1 class="text-center title-shadow">CHECKOUT</h1>
-</div>
-<div class="line mb-4"></div>
+<div class="checkout-page">
+  <div class="title-container mt-4">
+    <h1 class="text-center title-shadow">CHECKOUT</h1>
+  </div>
+  <div class="line mb-4"></div>
 
-<div class="container checkout-container">
   <div class="row">
-    <!-- Delivery Section -->
-    <div class="col-md-6">
-      <h3>DELIVERY</h3>
+
+    <%# Coluna da Esquerda (Formulário) %>
+    <div class="col-md-6 pe-5">
       <%= simple_form_for @order, url: orders_path, method: :post, html: { class: 'form-checkout' } do |f| %>
+
+        <h3>DELIVERY</h3>
         <div class="form-group">
           <%= f.input :planet, label: "Planet", input_html: { class: "form-control custom-input", required: true } %>
         </div>
@@ -16,19 +18,16 @@
           <%= f.input :address, label: "Address", input_html: { class: "form-control custom-input", required: true } %>
         </div>
 
-        <!-- Shipping Method -->
         <h3>SHIPPING METHOD</h3>
-          <div class="form-check">
-            <%= f.radio_button :shipping_method, "Shooting Star Deliveries", id: "shipping_standard", checked: true, class: "form-check-input", data: { action: "checkout#updateShipping" } %>
-            <%= f.label :shipping_method, "Shooting Star Deliveries - 5 to 10 Days", for: "shipping_standard", class: "form-check-label" %>
-          </div>
-          <div class="form-check">
-            <%= f.radio_button :shipping_method, "Meteor Post Express", id: "shipping_express", class: "form-check-input", data: { action: "checkout#updateShipping" } %>
-            <%= f.label :shipping_method, "Meteor Post Express - Scheduled Delivery", for: "shipping_express", class: "form-check-label" %>
-          </div>
+        <div class="form-check">
+          <%= f.radio_button :shipping_method, "Shooting Star Deliveries", id: "shipping_standard", checked: true, class: "form-check-input", data: { action: "checkout#updateShipping" } %>
+          <%= f.label :shipping_method, "Shooting Star Deliveries - 5 to 10 Days", for: "shipping_standard", class: "form-check-label" %>
+        </div>
+        <div class="form-check">
+          <%= f.radio_button :shipping_method, "Meteor Post Express", id: "shipping_express", class: "form-check-input", data: { action: "checkout#updateShipping" } %>
+          <%= f.label :shipping_method, "Meteor Post Express - Scheduled Delivery", for: "shipping_express", class: "form-check-label" %>
+        </div>
 
-
-        <!-- Payment Information -->
         <h3>PAYMENT</h3>
         <p>This is the address for your BTC deposit. You can scan the QR CODE for quick sending.</p>
         <div class="input-group mb-3">
@@ -36,46 +35,46 @@
           <button class="btn btn-light copy-btn" type="button">Copy</button>
         </div>
         <div class="qr-code">
-
+          <%# (Você pode adicionar um QR code aqui se quiser) %>
         </div>
 
-        <!-- Submit Button -->
         <%= f.button :submit, "Confirm Order", class: "btn btn-primary btn-block mt-4" %>
       <% end %>
     </div>
 
-    <!-- Cart Summary Section -->
-    <div class="col-md-6 order-summary" data-controller="checkout">
-  <div class="order-summary">
-    <h3>YOUR CART</h3>
-    <% if @cart_products.any? %>
-      <ul class="list-group" data-checkout-target="cart">
-        <% @cart_products.each do |product| %>
-  <li id="product_<%= product.id %>" data-price="<%= product.price %>" class="list-group-item d-flex justify-content-between align-items-center">
-    <span><%= product.name %> - <%= number_to_currency(product.price, unit: "BTC ") %></span>
-    <%= button_to "Remove", remove_from_cart_orders_path(product_id: product.id),
-                  method: :delete,
-                  remote: true,
-                  class: "btn btn-sm btn-danger",
-                  data: { action: "checkout#removeItem" } %>
-  </li>
-<% end %>
-      </ul>
-    <% else %>
-      <p>Your cart is empty. <a href="<%= products_path %>">Continue shopping</a>.</p>
-    <% end %>
+    <%# Coluna da Direita (Resumo do Pedido) %>
+    <div class="col-md-6 ps-5" data-controller="checkout">
+      <div class="order-summary">
+        <h3>YOUR CART</h3>
+        <% if @cart_products.any? %>
+          <ul class="list-group" data-checkout-target="cart">
+            <% @cart_products.each do |product| %>
+              <li id="product_<%= product.id %>" data-price="<%= product.price %>" class="list-group-item d-flex justify-content-between align-items-center">
+                <span><%= product.name %> - <%= number_to_currency(product.price, unit: "BTC ") %></span>
+                <%= button_to "Remove", remove_from_cart_orders_path(product_id: product.id),
+                            method: :delete,
+                            remote: true,
+                            class: "btn btn-sm btn-danger",
+                            data: { action: "checkout#removeItem" } %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>Your cart is empty. <a href="<%= products_path %>">Continue shopping</a>.</p>
+        <% end %>
+
+        <h3 class="mt-4">SUMMARY</h3>
+        <p>
+          Subtotal: <span data-checkout-target="subtotal" data-value="<%= @subtotal %>">BTC <%= @subtotal %></span>
+        </p>
+        <p>
+          Shipping: <span data-checkout-target="shipping">BTC 10.000</span>
+        </p>
+        <p>
+         Total: <span data-checkout-target="total" class="text-neon">BTC <%= (@subtotal.to_f + 10.000) %></span>
+        </p>
+      </div>
+    </div>
+
   </div>
-
-  <!-- Summary Information -->
-  <h3 class="mt-4">SUMMARY</h3>
-  <p>
-    Subtotal: <span data-checkout-target="subtotal" data-value="<%= @subtotal %>">BTC <%= @subtotal %></span>
-  </p>
-  <p>
-    Shipping: <span data-checkout-target="shipping">BTC 10.000</span>
-  </p>
-  <p>
-   Total: <span data-checkout-target="total" class="text-neon">BTC <%= (@subtotal.to_f + 10.000) %></span>
-  </p>
-
 </div>
