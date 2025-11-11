@@ -1,62 +1,73 @@
+@import "config/colors";
+@import "config/fonts";
+
 .signup-container {
-  max-width: 400px; /* Limita a largura do formulário */
-  margin: 50px auto; /* Centraliza o formulário e adiciona espaçamento vertical */
-  padding: 20px;
-  border: 2px solid #00E676; /* Borda verde */
-  border-radius: 10px; /* Arredondamento */
-  background-color: #121212; /* Fundo escuro */
-  box-shadow: 0 4px 10px #512DA8; /* Sombra roxa */
+  max-width: 25rem;
+  margin: 3.125rem auto;
+  padding: 1.875rem;
+  border: 2px solid $green;
+  border-radius: 0.625rem;
+  background-color: $black;
+  box-shadow: 0 0.25rem 0.625rem $purple;
+  color: $light-gray; // Cor de texto padrão
 
   .form-title {
+    font-family: $headers-font;
     text-align: center;
-    color: #CFD8DC;
+    color: $light-gray;
     font-size: 2rem;
     text-shadow: 0 2px 5px rgba(0, 230, 118, 0.8);
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
   }
 
   .fa-user-plus {
     font-size: 1.5rem;
-    color: #00E676;
+    color: $green;
   }
 
-  .form-inputs {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  .signup-form {
+    // Estiliza os 'labels' (Email, Password) do Simple Form
+    .form-label {
+      color: $light-gray;
+      font-family: $body-font;
+      font-size: 1rem;
+    }
 
-    input {
-      background-color: #121212;
-      border: 2px solid #00E676;
-      color: #CFD8DC;
-      padding: 10px;
-      font-size: 14px;
-      border-radius: 5px;
+    // Estiliza os 'inputs' (caixas de texto) do Simple Form
+    .form-control {
+      background-color: $black;
+      border: 2px solid $green;
+      color: $light-gray;
+      padding: 0.625rem;
+      font-size: 0.875rem;
+      border-radius: 0.3125rem;
       box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
 
       &:focus {
         border-color: #aafaff;
         outline: none;
+        background-color: #111;
       }
     }
   }
 
   .form-actions {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1.25rem;
 
     .btn-submit {
-      background-color: #ffc300; /* Amarelo do botão */
-      color: #512DA8; /* Texto roxo */
+      background-color: $yellow;
+      color: $purple;
+      font-family: $headers-font;
       border: none;
-      padding: 10px 20px;
+      padding: 0.625rem 1.25rem;
       font-size: 1rem;
       font-weight: bold;
-      border-radius: 5px;
+      border-radius: 0.3125rem;
       transition: all 0.3s ease;
 
       &:hover {
-        background-color: #ffdb4d;
+        background-color: darken($yellow, 10%);
         box-shadow: 0 4px 10px rgba(255, 195, 0, 0.6);
       }
     }
@@ -64,10 +75,11 @@
 
   .links {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 0.9375rem;
 
     a {
-      color: #00E676;
+      color: $green;
+      font-family: $body-font;
       text-decoration: none;
       font-weight: bold;
 
