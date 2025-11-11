@@ -9,4 +9,8 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   validates :username, presence: true, uniqueness: { case_sensitive: false } # Garante que o username é único, sem diferenciar maiúsculas de minúsculas
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
 end
