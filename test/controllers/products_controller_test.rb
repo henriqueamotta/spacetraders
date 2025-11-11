@@ -62,7 +62,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       post products_url, params: product_params
     end
 
-    # 3. (Assert) O resultado é verificado
+    # 3. O resultado é verificado
 
     # Verifica se houve redirecionamento para a página de 'show' do novo produto
     assert_redirected_to product_url(Product.last)
@@ -98,7 +98,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   # Teste 5: Ação 'destroy' (Deleção)
   test "should destroy product" do
-    # 1. (Arrange) Seleciona um produto existente dos fixtures
+    # 1. Seleciona um produto existente dos fixtures
     @product = products(:one) # O "X-Wing"
 
     # 2. Verificação da mudança no banco de dados
@@ -108,13 +108,47 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       delete product_url(@product)
     end
 
-    # 3. (Assert)
+    # 3. O resultado é verificado
 
     # Verifica se houve redirecionamento para a página de 'index' (listagem)
     assert_redirected_to products_url
 
     # Verifica se a mensagem de sucesso foi definida
     assert_equal "Product was successfully deleted!", flash[:notice]
+  end
+
+  # Teste 6: Restrições de Acesso - Tentativa de modificar produto de outro usuário
+  test "should NOT update a product owned by another user" do
+    # Fazendo login como user_2 (Vader)
+    sign_in users(:two)
+    # Seleciona o produto do user_1 (Skyboy)
+    @product_of_user_one = products(:one)
+
+    patch_params = { product: { name: "Hacked Name" } }
+    patch product_url(@product_of_user_one), params: patch_params
+
+    # O ApplicationController deve ter redirecionado
+    assert_redirected_to root_path
+
+    # O ApplicationController deve ter definido o alerta
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
+
+    # Garantindo que o nome do produto NÃO mudou na base de dados
+    assert_not_equal "Hacked Name", @product_of_user_one.reload.name
+  end
+
+  # Teste 7: Restrições de Acesso - Tentativa de deletar produto de outro usuário
+  test "should NOT destroy a product owned by another user" do
+    sign_in users(:two) # Login como "Vader"
+    @product_of_user_one = products(:one) # Seleciona o produto do "Skyboy"
+
+    # Verificando que o 'delete' NÃO muda a contagem
+    assert_no_difference "Product.count" do
+      delete product_url(@product_of_user_one)
+    end
+
+    assert_redirected_to root_path
+    assert_equal "You are not authorized to perform this action.", flash[:alert]
   end
 
 end
