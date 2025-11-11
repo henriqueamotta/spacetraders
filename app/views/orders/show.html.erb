@@ -24,7 +24,7 @@
           <%= link_to product.name, product_path(product), class: "product-link" %>
 
           <%# Mostrar o valor do item %>
-          <span class="d-block"><%= number_to_currency(product.price, unit: "BTC ") %></span>
+          <span class="d-block"><%= number_to_currency(product.price, unit: "₿ ") %></span>
         </div>
       </li>
     <% end %>
@@ -47,15 +47,15 @@
   <div class="order-total-summary mt-4">
     <p>
       <span>Subtotal:</span>
-      <span><%= number_to_currency(subtotal, unit: "BTC ") %></span>
+      <span><%= number_to_currency(subtotal, unit: "₿ ") %></span>
     </p>
     <p>
       <span>Shipping (<%= @order.shipping_method %>):</span>
-      <span><%= number_to_currency(shipping, unit: "BTC ") %></span>
+      <span><%= number_to_currency(shipping, unit: "₿ ") %></span>
     </p>
     <p class="total">
       <span>Total:</span>
-      <span class="text-neon"><%= number_to_currency(@order.total, unit: "BTC ") %></span>
+      <span class="text-neon"><%= number_to_currency(@order.total, unit: "₿ ") %></span>
     </p>
   </div>
 </div>

@@ -31,7 +31,7 @@
           <p class="product-description"><%= product.overview.truncate(100) %></p>
 
           <div class="mt-auto">
-            <p class="product-price"><%= number_to_currency(product.price, unit: "BTC ") %></p>
+            <p class="product-price"><%= number_to_currency(product.price, unit: "₿ ") %></p>
             <div class="d-flex justify-content-center mt-3">
 
               <%= button_to "Add to Cart", add_to_cart_path(product), method: :post, class: "btn btn-buy me-2" %>
