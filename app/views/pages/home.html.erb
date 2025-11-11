@@ -23,10 +23,8 @@
       %>
 
       <%# O novo botão "discreto" %>
-      <%# ATENÇÃO: Estamos hard-coding ID 88. Se o seu seed mudar, isso pode quebrar. %>
-      <% product = Product.find_by(id: 88) %>
-      <% if product %>
-        <%= link_to "View Details", product_path(product), class: "btn btn-discreet" %>
+      <% if @featured_product %>
+        <%= link_to "View Details", product_path(@featured_product), class: "btn btn-discreet" %>
       <% end %>
     </div>
 

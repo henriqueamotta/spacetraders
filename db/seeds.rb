@@ -11,19 +11,28 @@ if Rails.env.development?
 
   user_1 = User.create!(
     email: "skyboy@spacetraders.com",
-    password: "padmelover"
+    password: "tatooineboy",
+    first_name: "Luke",
+    last_name: "Skywalker",
+    username: "skyboy"
   )
   puts "  -> Created user: #{user_1.email} (Rebel)"
 
   user_2 = User.create!(
     email: "vader@empire.gov",
-    password: "padmelover"
+    password: "padmelover",
+    first_name: "Darth",
+    last_name: "Vader",
+    username: "darklord"
   )
   puts "  -> Created user: #{user_2.email} (Imperial)"
 
   user_3 = User.create!(
     email: "boba.fett@bounty.net",
-    password: "password123"
+    password: "password123",
+    first_name: "Boba",
+    last_name: "Fett",
+    username: "bountyhunter"
   )
   puts "  -> Created user: #{user_3.email} (Bounty Hunter)"
   puts "==> Users created successfully."
