@@ -22,6 +22,16 @@
   flex-direction: column;
   gap: 0.9375rem;
 
+  // Estiliza os labels do Simple Form
+  .form-label {
+    color: $light-gray;
+    font-family: $body-font;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  // Estiliza os inputs (usando as classes do simple_form)
+  .form-control,
   .custom-input,
   .custom-textarea,
   .custom-select {
@@ -38,11 +48,34 @@
       outline: none;
     }
   }
+
+  // Específico para o input de arquivo (para parecer customizado)
+  .custom-file-input {
+    color: $light-gray;
+  }
 }
 
 // Estilos para o botão de submissão
 .form-footer {
   margin-top: 1.25rem;
+
+  // Estilos para o botão de submissão
+  .btn-submit {
+    background-color: $yellow;
+    color: $purple;
+    font-family: $headers-font;
+    border: none;
+    padding: 0.625rem 1.25rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border-radius: 0.3125rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: darken($yellow, 10%);
+      box-shadow: 0 4px 10px rgba(255, 195, 0, 0.6);
+    }
+  }
 }
 
 // Título do formulário com ícone
