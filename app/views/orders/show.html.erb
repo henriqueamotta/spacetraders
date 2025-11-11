@@ -10,7 +10,7 @@
     <% @order.products.each do |product| %>
       <li class="list-group-item d-flex align-items-center">
 
-        <%# SUGESTÃO 2: Imagem em miniatura %>
+        <%# Imagem em miniatura %>
         <% if product.photos.attached? %>
           <%= cl_image_tag product.photos.first.key, class: "order-product-image" %>
         <% else %>
@@ -20,11 +20,11 @@
 
         <%# Container para o texto (Nome/Preço) %>
         <div class="flex-grow-1 ms-3">
-          <%# SUGESTÃO 1: Nome como Link %>
+          <%# Nome como Link %>
           <%= link_to product.name, product_path(product), class: "product-link" %>
 
-          <%# SUGESTÃO 1: Mostrar o valor do item %>
-          <span class="d-block"><%= number_to_currency(product.price, unit: "BTC ") %></span>
+          <%# Mostrar o valor do item %>
+          <span class="d-block"><%= number_to_currency(product.price, unit: "₿ ") %></span>
         </div>
       </li>
     <% end %>
@@ -38,8 +38,8 @@
     <li class="list-group-item"><strong>Address:</strong> <%= @order.address %></li>
   </ul>
 
-  <%# SUGESTÃO 3: Distinção entre Subtotal, Frete e Total %>
-  <%# (Calculamos o subtotal e o frete a partir do total) %>
+  <%# Distinção entre Subtotal, Frete e Total %>
+  <%# (É calculado o subtotal e o frete a partir do total) %>
   <%
   subtotal = @order.products.sum(&:price)
   shipping = @order.total - subtotal
@@ -47,15 +47,15 @@
   <div class="order-total-summary mt-4">
     <p>
       <span>Subtotal:</span>
-      <span><%= number_to_currency(subtotal, unit: "BTC ") %></span>
+      <span><%= number_to_currency(subtotal, unit: "₿ ") %></span>
     </p>
     <p>
       <span>Shipping (<%= @order.shipping_method %>):</span>
-      <span><%= number_to_currency(shipping, unit: "BTC ") %></span>
+      <span><%= number_to_currency(shipping, unit: "₿ ") %></span>
     </p>
     <p class="total">
       <span>Total:</span>
-      <span class="text-neon"><%= number_to_currency(@order.total, unit: "BTC ") %></span>
+      <span class="text-neon"><%= number_to_currency(@order.total, unit: "₿ ") %></span>
     </p>
   </div>
 </div>

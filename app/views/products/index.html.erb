@@ -24,14 +24,14 @@
           <h5 class="product-title"><%= product.name %></h5>
 
           <p class="product-seller mb-2">
-            <small>Sold by: <%= link_to product.user.username, "#", class: "seller-link" %></small>
+            <small>Sold by: <span class="seller-link"><%= product.user.username %></span></small>
           </p>
 
           <div class="line my-2"></div>
           <p class="product-description"><%= product.overview.truncate(100) %></p>
 
           <div class="mt-auto">
-            <p class="product-price"><%= number_to_currency(product.price, unit: "BTC ") %></p>
+            <p class="product-price"><%= number_to_currency(product.price, unit: "₿ ") %></p>
             <div class="d-flex justify-content-center mt-3">
 
               <%= button_to "Add to Cart", add_to_cart_path(product), method: :post, class: "btn btn-buy me-2" %>

@@ -4,7 +4,7 @@
   </div>
   <div class="line mb-4"></div>
 
-  <div class="row">
+  <div class="row" data-controller="checkout">
 
     <%# Coluna da Esquerda (Formulário) %>
     <div class="col-md-6 pe-5">
@@ -29,7 +29,7 @@
         </div>
 
         <h3>PAYMENT</h3>
-        <p>This is the address for your BTC deposit. You can scan the QR CODE for quick sending.</p>
+        <p>This is the address for your ₿ deposit. You can scan the QR CODE for quick sending.</p>
         <div class="input-group mb-3">
           <input type="text" readonly class="form-control custom-input" value="hY7jU45GbbNgdI890HkkLhelL90">
           <button class="btn btn-light copy-btn" type="button">Copy</button>
@@ -43,14 +43,14 @@
     </div>
 
     <%# Coluna da Direita (Resumo do Pedido) %>
-    <div class="col-md-6 ps-5" data-controller="checkout">
+    <div class="col-md-6 ps-5">
       <div class="order-summary">
         <h3>YOUR CART</h3>
         <% if @cart_products.any? %>
           <ul class="list-group" data-checkout-target="cart">
             <% @cart_products.each do |product| %>
               <li id="product_<%= product.id %>" data-price="<%= product.price %>" class="list-group-item d-flex justify-content-between align-items-center">
-                <span><%= product.name %> - <%= number_to_currency(product.price, unit: "BTC ") %></span>
+                <span><%= product.name %> - <%= number_to_currency(product.price, unit: "₿ ") %></span>
                 <%= button_to "Remove", remove_from_cart_orders_path(product_id: product.id),
                             method: :delete,
                             remote: true,
@@ -64,14 +64,27 @@
         <% end %>
 
         <h3 class="mt-4">SUMMARY</h3>
+
+        <%# 1. Usando o helper para formatar o subtotal inicial %>
         <p>
-          Subtotal: <span data-checkout-target="subtotal" data-value="<%= @subtotal %>">BTC <%= @subtotal %></span>
+          Subtotal:
+          <span data-checkout-target="subtotal" data-value="<%= @subtotal %>">
+            <%= number_to_currency(@subtotal, unit: "₿ ") %>
+          </span>
         </p>
+        <%# 2. Usamos o helper para formatar o frete inicial %>
         <p>
-          Shipping: <span data-checkout-target="shipping">BTC 10.000</span>
+          Shipping:
+          <span data-checkout-target="shipping">
+            <%= number_to_currency(10000.0, unit: "₿ ") %>
+          </span>
         </p>
+        <%# 3. Usando o helper para formatar o total inicial %>
         <p>
-         Total: <span data-checkout-target="total" class="text-neon">BTC <%= (@subtotal.to_f + 10.000) %></span>
+         Total:
+         <span data-checkout-target="total" class="text-neon">
+           <%= number_to_currency(@subtotal + 10000.0, unit: "₿ ") %>
+         </span>
         </p>
       </div>
     </div>

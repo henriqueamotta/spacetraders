@@ -15,7 +15,7 @@
           </div>
 
           <span class="badge bg-success p-2"><%= order.status || "Completed" %></span>
-          <span class="text-neon"><%= number_to_currency(order.total, unit: "BTC ") %></span>
+          <span class="text-neon"><%= number_to_currency(order.total, unit: "₿ ") %></span>
 
           <%# Link para a página de detalhes do pedido (show) %>
           <%= link_to "View Details", order_path(order), class: "btn btn-details" %>
