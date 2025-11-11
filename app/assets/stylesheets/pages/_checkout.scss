@@ -94,3 +94,56 @@
     font-weight: bold;
   }
 }
+
+// Estilo para a imagem miniatura na lista de produtos
+.order-product-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid $purple;
+}
+
+// Placeholder (se não houver imagem)
+.order-product-image-placeholder {
+  width: 60px;
+  height: 60px;
+  border-radius: 4px;
+  background-color: $black; // (ou $light-gray)
+  border: 1px solid $purple;
+}
+
+// Estilo para o link do produto na lista
+.product-link {
+  color: $light-gray;
+  font-family: $headers-font;
+  font-size: 1.1rem;
+  text-decoration: none;
+
+  &:hover {
+    color: $green;
+    text-decoration: underline;
+  }
+}
+
+// Estilo para o sumário de Subtotal/Frete/Total
+.order-total-summary {
+  p {
+    font-size: 1.1rem;
+    color: $light-gray;
+    font-family: $body-font;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0;
+  }
+
+  // Estilo para a linha "Total"
+  p.total {
+    font-family: $headers-font;
+    font-size: 1.3rem;
+    border-top: 2px solid $green;
+    border-bottom: none;
+    padding-top: 1rem;
+  }
+}

@@ -1,10 +1,63 @@
-<h1>Orders#show</h1>
+<div class="title-container mt-4">
+  <h1 class="text-center title-shadow">ORDER DETAILS: <%= @order.id %></h1>
+</div>
+<div class="line mb-4"></div>
 
-<p>User: <%= @order.user.name %></p>
-<p>Product: <%= @order.product.name %></p>
-<p>Status: <%= @order.status %></p>
-<p>Total: <%= @order.total %></p>
+<div class="order-summary p-4"> <%# Reutilizando o estilo do checkout %>
 
-<%= link_to 'Back', orders_path %>
-<%= link_to 'Delete Order', @order, method: :delete, data: { confirm: 'Are you sure?' } %>
-<p>Find me in app/views/orders/show.html.erb</p>
+  <h3 class="mt-4">PRODUCTS IN THIS ORDER</h3>
+  <ul class="list-group list-group-flush mb-4">
+    <% @order.products.each do |product| %>
+      <li class="list-group-item d-flex align-items-center">
+
+        <%# SUGESTÃO 2: Imagem em miniatura %>
+        <% if product.photos.attached? %>
+          <%= cl_image_tag product.photos.first.key, class: "order-product-image" %>
+        <% else %>
+          <%# (Um 'placeholder' caso o produto não tenha foto) %>
+          <div class="order-product-image-placeholder"></div>
+        <% end %>
+
+        <%# Container para o texto (Nome/Preço) %>
+        <div class="flex-grow-1 ms-3">
+          <%# SUGESTÃO 1: Nome como Link %>
+          <%= link_to product.name, product_path(product), class: "product-link" %>
+
+          <%# SUGESTÃO 1: Mostrar o valor do item %>
+          <span class="d-block"><%= number_to_currency(product.price, unit: "BTC ") %></span>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+
+  <h3 class="mt-4">SHIPPING & SUMMARY</h3>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>User:</strong> <%= @order.user.full_name %></li>
+    <li class="list-group-item"><strong>Status:</strong> <%= @order.status || "Pending" %></li>
+    <li class="list-group-item"><strong>Shipped to:</strong> <%= @order.planet %></li>
+    <li class="list-group-item"><strong>Address:</strong> <%= @order.address %></li>
+  </ul>
+
+  <%# SUGESTÃO 3: Distinção entre Subtotal, Frete e Total %>
+  <%# (Calculamos o subtotal e o frete a partir do total) %>
+  <%
+  subtotal = @order.products.sum(&:price)
+  shipping = @order.total - subtotal
+  %>
+  <div class="order-total-summary mt-4">
+    <p>
+      <span>Subtotal:</span>
+      <span><%= number_to_currency(subtotal, unit: "BTC ") %></span>
+    </p>
+    <p>
+      <span>Shipping (<%= @order.shipping_method %>):</span>
+      <span><%= number_to_currency(shipping, unit: "BTC ") %></span>
+    </p>
+    <p class="total">
+      <span>Total:</span>
+      <span class="text-neon"><%= number_to_currency(@order.total, unit: "BTC ") %></span>
+    </p>
+  </div>
+</div>
+
+<%= link_to 'Back to My Orders', orders_path, class: 'btn btn-secondary mt-4' %>
