@@ -1,7 +1,8 @@
 @import "config/colors";
 @import "config/fonts";
 
-.signup-container {
+// Contêiner genérico para formulários (signup, login, etc.)
+.form-container {
   max-width: 25rem;
   margin: 3.125rem auto;
   padding: 1.875rem;
@@ -9,7 +10,8 @@
   border-radius: 0.625rem;
   background-color: $black;
   box-shadow: 0 0.25rem 0.625rem $purple;
-  color: $light-gray; // Cor de texto padrão
+  color: $light-gray;
+  text-align: center;
 
   .form-title {
     font-family: $headers-font;
@@ -20,34 +22,34 @@
     margin-bottom: 1.25rem;
   }
 
-  .fa-user-plus {
+  // Ícones no título (ex: fa-user-plus)
+  .fa-user-plus, .fa-sign-in-alt {
     font-size: 1.5rem;
     color: $green;
   }
 
-  .signup-form {
-    // Estiliza os 'labels' (Email, Password) do Simple Form
-    .form-label {
-      color: $light-gray;
-      font-family: $body-font;
-      font-size: 1rem;
-    }
+  // Estiliza os 'labels' (Email, Password) do Simple Form
+  .form-label {
+    color: $light-gray;
+    font-family: $body-font;
+    font-size: 1rem;
+    text-align: left; // Alinha os labels à esquerda
+  }
 
-    // Estiliza os 'inputs' (caixas de texto) do Simple Form
-    .form-control {
-      background-color: $black;
-      border: 2px solid $green;
-      color: $light-gray;
-      padding: 0.625rem;
-      font-size: 0.875rem;
-      border-radius: 0.3125rem;
-      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+  // Estiliza os 'inputs' (caixas de texto) do Simple Form
+  .form-control {
+    background-color: $black;
+    border: 2px solid $green;
+    color: $light-gray;
+    padding: 0.625rem;
+    font-size: 0.875rem;
+    border-radius: 0.3125rem;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
 
-      &:focus {
-        border-color: #aafaff;
-        outline: none;
-        background-color: #111;
-      }
+    &:focus {
+      border-color: #aafaff;
+      outline: none;
+      background-color: #111;
     }
   }
 
@@ -73,6 +75,7 @@
     }
   }
 
+  // Links na parte inferior (ex: "Sign up here")
   .links {
     text-align: center;
     margin-top: 0.9375rem;
