@@ -1,2 +1,93 @@
-<h1>Dashboards#my_products</h1>
-<p>Find me in app/views/dashboards/my_products.html.erb</p>
+<div class="container mt-5" data-controller="dashboard">
+
+  <%# CABEÇALHO E BOTÕES DE CONTROLE %>
+  <div class="dashboard-header">
+    <h1>MY SELLER DASHBOARD</h1>
+
+    <div class="view-toggles">
+      <button class="btn btn-toggle active" data-dashboard-target="gridBtn" data-action="click->dashboard#showGrid">
+        <i class="fa-solid fa-border-all"></i> Grid
+      </button>
+      <button class="btn btn-toggle" data-dashboard-target="listBtn" data-action="click->dashboard#showList">
+        <i class="fa-solid fa-list"></i> List
+      </button>
+    </div>
+  </div>
+
+  <%# Verifica se existem produtos %>
+  <% if @products.any? %>
+
+    <%# --- OPÇÃO 1: GRID VIEW --- %>
+    <div class="row" data-dashboard-target="gridView">
+      <% @products.each do |product| %>
+        <div class="col-md-4 mb-4">
+          <div class="card product-card bg-dark text-light h-100">
+            <% if product.photos.attached? %>
+              <div class="card-img-top text-center">
+                <%= cl_image_tag product.photos.first.key, class: "product-image" %>
+              </div>
+            <% end %>
+            <div class="card-body text-center d-flex flex-column">
+              <h5 class="product-title"><%= product.name %></h5>
+              <p class="product-price mb-3"><%= number_to_currency(product.price, unit: "BTC ") %></p>
+
+              <div class="mt-auto d-flex justify-content-center gap-2">
+                <%= link_to "Edit", edit_product_path(product), class: "btn btn-edit" %>
+                <%= link_to "Delete", product_path(product), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%# --- OPÇÃO 2: TABLE VIEW (Inicialmente escondida pelo JS) --- %>
+    <div class="table-responsive d-none" data-dashboard-target="tableView">
+      <table class="table dashboard-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td>
+                <% if product.photos.attached? %>
+                  <%= cl_image_tag product.photos.first.key, class: "table-img" %>
+                <% else %>
+                  <div class="table-img bg-secondary"></div>
+                <% end %>
+              </td>
+              <td class="fw-bold text-white"><%= product.name %></td>
+              <td><%= product.category %></td>
+              <td class="text-neon"><%= number_to_currency(product.price, unit: "BTC ") %></td>
+              <td>
+                <div class="d-flex gap-2">
+                  <%= link_to edit_product_path(product), class: "btn btn-sm btn-edit", style: "width: auto; padding: 5px 15px;" do %>
+                    <i class="fa-solid fa-pen"></i>
+                  <% end %>
+                  <%= link_to product_path(product), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  <% else %>
+    <%# Estado vazio (sem produtos) %>
+    <div class="text-center mt-5">
+      <h3 class="text-white">You haven't listed any products yet.</h3>
+      <%= link_to "Start Selling", new_product_path, class: "btn btn-primary mt-3" %>
+    </div>
+  <% end %>
+
+</div>
