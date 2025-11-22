@@ -76,6 +76,27 @@
       box-shadow: 0 4px 10px rgba(255, 195, 0, 0.6);
     }
   }
+
+  // Estilo alternativo Neon
+  .btn-neon {
+    background-color: transparent;
+    border: 2px solid $green;
+    color: $green;
+    font-family: $headers-font;
+    padding: 0.625rem 1.25rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border-radius: 0.3125rem;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px $green;
+    box-shadow: 0 0 5px $green;
+
+    &:hover {
+      background-color: $green;
+      color: $black;
+      box-shadow: 0 0 20px $green;
+    }
+  }
 }
 
 // Título do formulário com ícone
@@ -101,4 +122,104 @@
   color: $light-gray;
   text-shadow: 0px 4px 8px rgba(0, 230, 118, 0.8),
                0px 0px 15px rgba(128, 0, 128, 0.8);
+}
+
+// Wrapper para o botão de upload customizado
+.custom-file-upload {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin-top: 0.5rem;
+
+  // Esconde o input original, mas o mantém clicável por cima
+  input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  // O botão visual (Label)
+  .btn-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    background-color: rgba($green, 0.1); // Fundo verde transparente
+    border: 2px dashed $green; // Borda tracejada indica "área de drop"
+    color: $green;
+    font-family: $headers-font;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+
+    &:hover {
+      background-color: rgba($green, 0.2);
+      box-shadow: 0 0 10px rgba($green, 0.3);
+    }
+
+    i {
+      font-size: 1.2rem;
+    }
+  }
+}
+
+// Galeria de imagens existentes (Edição)
+.edit-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem;
+  border: 1px solid rgba($green, 0.3);
+  border-radius: 0.3125rem;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  .gallery-item {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid $purple;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // Botão "X" para deletar foto
+    .btn-delete-photo {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 24px;
+      height: 24px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #ff4444; // Vermelho para ação destrutiva
+      border: 1px solid #ff4444;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      z-index: 10;
+
+      &:hover {
+        background-color: #ff4444;
+        color: white;
+      }
+    }
+  }
 }

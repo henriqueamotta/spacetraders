@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: %i[show edit update destroy delete_photo]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
@@ -71,6 +72,19 @@ class ProductsController < ApplicationController
     session[:cart] ||= []
     session[:cart] << params[:id].to_i
     redirect_to new_order_path, notice: "Item added to cart."
+  end
+
+  def delete_photo
+    # Encontra a imagem pelo ID (que vem nos params)
+    @photo = @product.photos.find(params[:photo_id])
+    # Remove a imagem do Active Storage (purge = apaga do banco e do storage)
+    @photo.purge
+
+    # Responde com Turbo Stream para atualizar a página sem recarregar
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@photo) }
+      format.html { redirect_to edit_product_path(@product), notice: "Photo deleted." }
+    end
   end
 
   private

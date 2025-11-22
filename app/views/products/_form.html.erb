@@ -8,6 +8,7 @@
   <%= form.error_notification %> <%# Mostrar erros de validação %>
 
   <div class="product-form-container">
+    <%# --- COLUNA DA ESQUERDA --- %>
     <div class="form-column">
       <%= form.input :name, label: "Product Name:" %>
       <%= form.input :model, label: "Model:" %>
@@ -15,10 +16,56 @@
       <%= form.input :category, collection: Product::CATEGORIES, label: "Category:", prompt: "Select a category" %>
     </div>
 
+    <%# --- COLUNA DA DIREITA --- %>
     <div class="form-column">
       <%= form.input :price, label: "Price:" %>
       <%= form.input :overview, label: "Overview:", as: :text, input_html: { rows: 6 } %>
-      <%= form.input :photos, label: "Upload Images:", as: :file, input_html: { multiple: true, class: "custom-file-input" } %>
+
+      <%# --- SEÇÃO DE IMAGENS --- %>
+      <div class="form-group mb-4">
+        <label class="form-label mb-2">Product Images: *</label>
+
+        <%# 1. Galeria de imagens existentes (Aparece apenas se houver fotos) %>
+        <% if @product.photos.attached? %>
+          <div class="edit-gallery">
+            <% @product.photos.each do |photo| %>
+              <%# ID único para o Turbo poder remover este elemento específico %>
+              <div class="gallery-item" id="<%= dom_id(photo) %>">
+                <%= cl_image_tag photo.key, crop: :fill, width: 100, height: 100 %>
+
+                <%# Link para deletar a foto individualmente %>
+                <%= link_to delete_photo_product_path(@product, photo_id: photo.id),
+                            data: { turbo_method: :delete, turbo_confirm: "Delete this image?" },
+                            class: "btn-delete-photo",
+                            title: "Remove image" do %>
+                  <i class="fa-solid fa-times"></i>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%# 2. Botão de Upload Customizado %>
+        <div class="custom-file-upload">
+          <%# O input real fica invisível (opacity: 0 no CSS) mas clicável %>
+          <%= form.input_field :photos, as: :file, multiple: true, accept: 'image/*', id: "product_photos_input" %>
+
+          <%# O label visual que parece um botão %>
+          <label for="product_photos_input" class="btn-upload">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>
+              <%= @product.persisted? && @product.photos.attached? ? "Add More Images" : "Choose Images" %>
+            </span>
+          </label>
+        </div>
+
+        <%# Exibe erros específicos do campo photos %>
+        <% if @product.errors[:photos].any? %>
+          <div class="text-danger small mt-2">
+            <%= @product.errors[:photos].join(", ") %>
+          </div>
+        <% end %>
+      </div>
 
       <div class="form-footer text-center">
         <%= form.submit "Submit", class: "btn btn-submit" %>

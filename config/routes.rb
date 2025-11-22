@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Rotas para produtos
-  resources :products
+  resources :products do
+    member do
+      delete :delete_photo
+    end
+  end
+
   # Rota para categorias filtradas
   get "products/category/:category", to: "products#index", as: :filtered_products
 
@@ -19,6 +24,7 @@ Rails.application.routes.draw do
     member do
       get :order_confirmation
     end
+
     collection do
       delete "remove_from_cart/:product_id", to: "orders#remove_from_cart", as: :remove_from_cart
     end
