@@ -26,4 +26,7 @@ Rails.application.routes.draw do
 
   # Adicionar ao carrinho
   post "cart/:id", to: "products#add_to_cart", as: "add_to_cart"
+
+  # Rota para o dashboard do vendedor
+  get "my_products", to: "dashboards#my_products", as: :seller_dashboard
 end
