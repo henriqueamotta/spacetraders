@@ -64,8 +64,8 @@
                 <% end %>
               </td>
               <td class="fw-bold text-white"><%= product.name %></td>
-              <td><%= product.category %></td>
-              <td class="text-neon"><%= number_to_currency(product.price, unit: "BTC ") %></td>
+              <td class="text-white"><%= product.category %></td>
+              <td class="text-white"><%= number_to_currency(product.price, unit: "₿ ") %></td>
               <td>
                 <div class="d-flex gap-2">
                   <%= link_to edit_product_path(product), class: "btn btn-sm btn-edit", style: "width: auto; padding: 5px 15px;" do %>
