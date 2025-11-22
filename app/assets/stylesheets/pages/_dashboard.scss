@@ -1,0 +1,76 @@
+@import "config/colors";
+@import "config/fonts";
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-family: $headers-font;
+    color: $light-gray;
+    text-shadow: 0 0 10px $purple;
+    margin: 0;
+  }
+
+  // Botões de alternância (Grid/List)
+  .view-toggles {
+    .btn-toggle {
+      background-color: transparent;
+      border: 1px solid $green;
+      color: $green;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: rgba($green, 0.1);
+      }
+
+      &.active {
+        background-color: $green;
+        color: $black;
+        box-shadow: 0 0 10px $green;
+      }
+    }
+    // Arredondamento para criar o grupo de botões
+    .btn-toggle:first-child { border-radius: 5px 0 0 5px; }
+    .btn-toggle:last-child { border-radius: 0 5px 5px 0; }
+  }
+}
+
+// Estilo da Tabela Escura
+.dashboard-table {
+  background-color: $black;
+  border: 1px solid $purple;
+  color: $light-gray;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden; // Para bordas arredondadas funcionarem
+
+  th {
+    background-color: darken($purple, 20%);
+    color: $yellow;
+    font-family: $headers-font;
+    padding: 1rem;
+    border-bottom: 2px solid $purple;
+  }
+
+  td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba($purple, 0.3);
+  }
+
+  tr:hover {
+    background-color: rgba($green, 0.05);
+  }
+
+  // Miniatura na tabela
+  .table-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+}

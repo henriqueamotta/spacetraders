@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: %i[show edit update destroy delete_photo]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    # 1. Aplicando o 'Scope' (da Policy)
+    # Aplicando o 'Scope' (da Policy)
     # Isso automaticamente chama o Scope.resolve (para não mostrar os produtos do próprio usuário)
     @products = policy_scope(Product)
 
@@ -14,14 +15,14 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    # 2. Autorizando a ação 'show?'
+    # Autorizando a ação 'show?'
     # (Pundit checa 'show?' na ProductPolicy. Como é 'true', ele permite)
     authorize @product
   end
 
   def new
     @product = Product.new
-    # 3. Autorizando a ação 'create?'
+    # Autorizando a ação 'create?'
     # (Pundit checa 'create?'. Se o usuário não estiver logado, ele dará erro)
     authorize @product
   end
@@ -29,7 +30,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     @product.user = current_user
-    # 4. Autorizando a ação 'create?' (igual ao 'new')
+    # Autorizando a ação 'create?' (igual ao 'new')
     authorize @product
 
     if @product.save
@@ -47,11 +48,29 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find(params[:id])
-    # 6. Autorizando a ação 'update?'
     authorize @product
 
-    if @product.update(product_params)
+    # Seleciona os parâmetros seguros
+    clean_params = product_params
+
+    # Extraindo as fotos dos parâmetros
+    # O .delete(:photos) remove a chave :photos de clean_params e retorna o valor para a variável new_photos
+    # Isso impede que o @product.update sobrescreva as fotos existentes.
+    new_photos = clean_params.delete(:photos)
+
+    # Atualizando os dados de texto (sem tocar nas fotos ainda)
+    if @product.update(clean_params)
+
+      # Lógica de Anexar (Append)
+      if new_photos.present?
+        # Limpa strings vazias que o formulário envia (ex: ["", "foto.jpg"])
+        new_photos = new_photos.reject(&:blank?)
+
+        # Se sobrou alguma foto válida, anexa ela às existentes
+        # O método .attach() ADICIONA, não substitui.
+        @product.photos.attach(new_photos) if new_photos.any?
+      end
+
       redirect_to @product, notice: "Product was successfully updated!"
     else
       render :edit, status: :unprocessable_entity
@@ -60,7 +79,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
-    # 7. Autorizando a ação 'destroy?'
+    # Autorizando a ação 'destroy?'
     authorize @product
 
     @product.destroy
@@ -71,6 +90,19 @@ class ProductsController < ApplicationController
     session[:cart] ||= []
     session[:cart] << params[:id].to_i
     redirect_to new_order_path, notice: "Item added to cart."
+  end
+
+  def delete_photo
+    # Encontra a imagem pelo ID (que vem nos params)
+    @photo = @product.photos.find(params[:photo_id])
+    # Remove a imagem do Active Storage (purge = apaga do banco e do storage)
+    @photo.purge
+
+    # Responde com Turbo Stream para atualizar a página sem recarregar
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@photo) }
+      format.html { redirect_to edit_product_path(@product), notice: "Photo deleted." }
+    end
   end
 
   private

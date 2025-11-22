@@ -7,21 +7,33 @@
 
   <%# Coluna da Esquerda (Carrossel) %>
   <div class="col-md-6">
-    <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% @product.photos.each_with_index do |photo, index| %>
-          <div class="carousel-item <%= 'active' if index == 0 %>">
-            <%= cl_image_tag photo.key, class: "product-image-carousel" %>
-          </div>
+    <% if @product.photos.any? %>
+      <%# --- SE TIVER FOTOS, MOSTRA CARROSSEL --- %>
+      <div id="product-carousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% @product.photos.each_with_index do |photo, index| %>
+            <div class="carousel-item <%= 'active' if index == 0 %>">
+              <%= cl_image_tag photo.key, class: "product-image-carousel" %>
+            </div>
+          <% end %>
+        </div>
+
+        <%# Só mostra as setas se tiver mais de 1 foto %>
+        <% if @product.photos.count > 1 %>
+          <button class="carousel-control-prev" type="button" data-bs-target="#product-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#product-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
         <% end %>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#product-carousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#product-carousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      </button>
-    </div>
+    <% else %>
+      <%# --- SE NÃO TIVER FOTOS (FALLBACK) --- %>
+      <div class="d-flex align-items-center justify-content-center" style="height: 400px; background-color: #000; border: 1px solid #512DA8; border-radius: 10px;">
+        <p class="text-muted">No images available</p>
+      </div>
+    <% end %>
   </div>
 
   <%# Coluna da Direita (Informações) %>

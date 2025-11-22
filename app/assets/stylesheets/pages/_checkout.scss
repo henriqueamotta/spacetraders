@@ -88,11 +88,6 @@
     display: flex;
     justify-content: space-between;
   }
-
-  .text-neon { // (O Total)
-    color: $yellow;
-    font-weight: bold;
-  }
 }
 
 // Estilo para a imagem miniatura na lista de produtos
@@ -147,3 +142,8 @@
     padding-top: 1rem;
   }
 }
+
+.text-neon {
+    color: $yellow;
+    font-weight: bold;
+  }
