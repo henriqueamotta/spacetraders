@@ -21,23 +21,19 @@
       <%= form.input :price, label: "Price:" %>
       <%= form.input :overview, label: "Overview:", as: :text, input_html: { rows: 6 } %>
 
-      <%# --- SEÇÃO DE IMAGENS --- %>
-      <div class="form-group mb-4">
+      <%# --- SEÇÃO DE IMAGENS (COM PREVIEW) --- %>
+      <div class="form-group mb-4" data-controller="image-preview">
         <label class="form-label mb-2">Product Images: *</label>
 
-        <%# 1. Galeria de imagens existentes (Aparece apenas se houver fotos) %>
+        <%# Galeria de imagens JÁ SALVAS (Vinda do Banco) %>
         <% if @product.photos.attached? %>
-          <div class="edit-gallery">
+          <div class="edit-gallery mb-2">
             <% @product.photos.each do |photo| %>
-              <%# ID único para o Turbo poder remover este elemento específico %>
               <div class="gallery-item" id="<%= dom_id(photo) %>">
                 <%= cl_image_tag photo.key, crop: :fill, width: 100, height: 100 %>
-
-                <%# Link para deletar a foto individualmente %>
                 <%= link_to delete_photo_product_path(@product, photo_id: photo.id),
                             data: { turbo_method: :delete, turbo_confirm: "Delete this image?" },
-                            class: "btn-delete-photo",
-                            title: "Remove image" do %>
+                            class: "btn-delete-photo" do %>
                   <i class="fa-solid fa-times"></i>
                 <% end %>
               </div>
@@ -45,12 +41,21 @@
           </div>
         <% end %>
 
-        <%# 2. Botão de Upload Customizado %>
-        <div class="custom-file-upload">
-          <%# O input real fica invisível (opacity: 0 no CSS) mas clicável %>
-          <%= form.input_field :photos, as: :file, multiple: true, accept: 'image/*', id: "product_photos_input" %>
+        <%# Área de PREVIEW (Para novas imagens selecionadas) %>
+        <div class="edit-gallery" data-image-preview-target="previewContainer"></div>
 
-          <%# O label visual que parece um botão %>
+        <%# Botão de Upload %>
+        <div class="custom-file-upload">
+          <%= form.input_field :photos,
+                               as: :file,
+                               multiple: true,
+                               accept: 'image/*',
+                               id: "product_photos_input",
+                               data: {
+                                 image_preview_target: "input",
+                                 action: "change->image-preview#addFiles"
+                               } %>
+
           <label for="product_photos_input" class="btn-upload">
             <i class="fa-solid fa-cloud-arrow-up"></i>
             <span>
@@ -59,7 +64,6 @@
           </label>
         </div>
 
-        <%# Exibe erros específicos do campo photos %>
         <% if @product.errors[:photos].any? %>
           <div class="text-danger small mt-2">
             <%= @product.errors[:photos].join(", ") %>
@@ -73,3 +77,4 @@
     </div>
   </div>
 <% end %>
+''
