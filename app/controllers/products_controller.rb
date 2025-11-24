@@ -5,6 +5,14 @@ class ProductsController < ApplicationController
   def index
     @products = policy_scope(Product)
 
+    # Filtro por Vendedor
+    if params[:user_id].present?
+      # Encontrando o vendedor para usar o nome dele no título da view
+      @seller = User.find(params[:user_id])
+      # Filtrando a lista
+      @products = @products.where(user: @seller)
+    end
+
     # Filtro por Categoria
     if params[:category].present?
       # Usando ILIKE para ignorar maiúsculas/minúsculas (droids vs Droids)

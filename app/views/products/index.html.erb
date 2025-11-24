@@ -2,15 +2,26 @@
   <div class="col-sm-6 my-5">
     <%= form_with url: products_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :search,
-            params[:search],
-            class: "form-control",
-            placeholder: "Type a keyword (name or category)"
-          %>
+          params[:search],
+          class: "form-control",
+          placeholder: "Type a keyword (name or category)"
+        %>
       <%= submit_tag "Search", name: "", class: "search-product" %>
     <% end %>
   </div>
 </div>
-<h1 class="justify text-center">PRODUCTS</h1>
+
+<%# Título Dinâmico: Muda se filtrado por vendedor %>
+<h1 class="justify text-center">
+  <% if @seller %>
+    <%# Caso filtrado: "PRODUCTS BY 'vendedor'" %>
+    PRODUCTS BY <span style="color: #FDEE00;"><%= @seller.username.upcase %></span>
+  <% else %>
+    <%# Caso normal %>
+    PRODUCTS
+  <% end %>
+</h1>
+
 <div class="row justify-content-center">
   <% @products.each do |product| %>
     <div class="col-md-4 mb-4">
@@ -20,25 +31,43 @@
             <%= cl_image_tag product.photos.first.key, class: "product-image" %>
           </div>
         <% end %>
+
         <div class="card-body text-center d-flex flex-column">
           <h5 class="product-title"><%= product.name %></h5>
 
           <p class="product-seller mb-2">
-            <small>Sold by: <span class="seller-link"><%= product.user.username %></span></small>
+            <small>
+              Sold by:
+              <%# Agora é um link real que passa o 'user_id' para o index %>
+              <%= link_to product.user.username,
+                    products_path(user_id: product.user.id),
+                    class: "seller-link" %>
+            </small>
           </p>
 
           <div class="line my-2"></div>
-          <p class="product-description"><%= product.overview.truncate(100) %></p>
+
+          <p class="product-description">
+            <%= product.overview.truncate(100) %>
+          </p>
 
           <div class="mt-auto">
-            <p class="product-price"><%= number_to_currency(product.price, unit: "₿ ") %></p>
+            <p class="product-price">
+              <%= number_to_currency(product.price, unit: "₿ ") %>
+            </p>
+
             <div class="d-flex justify-content-center mt-3">
+              <%= button_to "Add to Cart",
+                    add_to_cart_path(product),
+                    method: :post,
+                    class: "btn btn-buy me-2" %>
 
-              <%= button_to "Add to Cart", add_to_cart_path(product), method: :post, class: "btn btn-buy me-2" %>
-
-              <%= link_to "Details", product_path(product), class: "btn btn-details" %>
+              <%= link_to "Details",
+                    product_path(product),
+                    class: "btn btn-details" %>
             </div>
           </div>
+
         </div>
       </div>
     </div>
