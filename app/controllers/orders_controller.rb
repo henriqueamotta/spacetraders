@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_cart, only: %i[new create remove_from_cart]
-  before_action :set_order, only: %i[show destroy order_confirmation]
+  before_action :set_order, only: %i[show destroy]
   before_action :ensure_cart_is_not_empty, only: %i[create]
 
   def index
@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
     if @order.save
       session[:cart] = [] # Limpa o carrinho após salvar
 
-      redirect_to order_confirmation_order_path(@order), notice: 'Order was successfully placed!'
+      redirect_to @order, notice: 'THANK YOU! Your order has been successfully placed and will be shipped soon.'
     else
       Rails.logger.debug "Order Errors: #{@order.errors.full_messages}"
       render :new, status: :unprocessable_entity
@@ -79,9 +79,6 @@ class OrdersController < ApplicationController
 
     flash.now[:notice] = "Item removed from cart."
     render :new, status: :unprocessable_entity
-  end
-
-  def order_confirmation
   end
 
   private
