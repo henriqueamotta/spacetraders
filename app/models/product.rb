@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many_attached :photos
   has_and_belongs_to_many :orders
 
-  CATEGORIES = ["Droids", "Vehicles", "Spaceships"]
+  CATEGORIES = ["Droid", "Vehicle", "Spaceship"]
 
   validates :name, :model, :price, :manufacturer, :overview, :category, presence: true
   validate :must_have_at_least_one_photo
