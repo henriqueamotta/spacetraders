@@ -53,6 +53,8 @@ gem "sassc-rails"
 gem "cloudinary"
 gem "devise"
 gem "pundit"
+gem "redis"
+gem "sidekiq"
 
 group :development, :test do
   gem "dotenv-rails"
