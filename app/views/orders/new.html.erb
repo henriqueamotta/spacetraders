@@ -21,7 +21,7 @@
         <h3>SHIPPING METHOD</h3>
         <div class="form-check">
           <%= f.radio_button :shipping_method, "Shooting Star Deliveries", id: "shipping_standard", checked: true, class: "form-check-input", data: { action: "checkout#updateShipping" } %>
-          <%= f.label :shipping_method, "Shooting Star Deliveries - 5 to 10 Days", for: "shipping_standard", class: "form-check-label" %>
+          <%= f.label :shipping_method, "Shooting Star Deliveries - 5 to 10 Moons", for: "shipping_standard", class: "form-check-label" %>
         </div>
         <div class="form-check">
           <%= f.radio_button :shipping_method, "Meteor Post Express", id: "shipping_express", class: "form-check-input", data: { action: "checkout#updateShipping" } %>

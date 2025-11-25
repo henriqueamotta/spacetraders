@@ -3,26 +3,45 @@
 </div>
 <div class="line mb-4"></div>
 
-<%# Mesmo estilo de lista do Checkout %>
 <div class="order-summary p-4">
   <% if @orders.any? %>
     <ul class="list-group">
       <% @orders.each do |order| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div>
+
+          <%# Coluna 1: Informações do Pedido %>
+          <div style="flex: 1;">
             <strong class="d-block">Order ID: <%= order.id %></strong>
             <small>Placed on: <%= order.created_at.strftime("%B %d, %Y") %></small>
           </div>
 
-          <span class="badge bg-success p-2"><%= order.status || "Completed" %></span>
-          <span class="text-neon"><%= number_to_currency(order.total, unit: "₿ ") %></span>
+          <%# Coluna 2: Status (Centralizado) %>
+          <div style="flex: 1; text-align: center;">
+            <% if order.status == "Delivered" %>
+              <span class="badge bg-success text-dark p-2" style="font-size: 0.9rem; min-width: 100px;">
+                <i class="fas fa-check-circle"></i> Delivered
+              </span>
+            <% else %>
+              <span class="badge bg-warning text-dark p-2" style="font-size: 0.9rem; min-width: 100px;">
+                <i class="fas fa-clock"></i> Processing
+              </span>
+            <% end %>
+          </div>
 
-          <%# Link para a página de detalhes do pedido (show) %>
-          <%= link_to "View Details", order_path(order), class: "btn btn-details" %>
+          <%# Coluna 3: Preço %>
+          <div style="flex: 1; text-align: center;">
+            <span class="text-neon"><%= number_to_currency(order.total, unit: "₿ ") %></span>
+          </div>
+
+          <%# Coluna 4: Botão %>
+          <div style="flex: 0;">
+            <%= link_to "View Details", order_path(order), class: "btn btn-details", style: "white-space: nowrap;" %>
+          </div>
+
         </li>
       <% end %>
     </ul>
   <% else %>
-    <p>You haven't placed any orders yet. <a href="<%= products_path %>">Go shopping!</a></p>
+    <p class="text-center mt-3">You haven't placed any orders yet. <a href="<%= products_path %>" class="text-neon">Go shopping!</a></p>
   <% end %>
 </div>
