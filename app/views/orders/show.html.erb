@@ -60,4 +60,13 @@
   </div>
 </div>
 
-<%= link_to 'Back to My Orders', orders_path, class: 'btn btn-secondary mt-4' %>
+<div class="d-flex justify-content-between align-items-center mt-4">
+  <%= link_to 'Back to My Orders', orders_path, class: 'btn btn-secondary' %>
+
+  <%# O Pundit (policy) já garante que só o dono vê essa página, mas no futuro pode-se adicionar uma lógica extra: só pode cancelar se não foi enviado ainda. %>
+
+  <%= button_to "Cancel Order", order_path(@order),
+      method: :delete,
+      class: "btn btn-danger",
+      form: { data: { turbo_confirm: "Are you sure you want to cancel this order?" } } %>
+</div>

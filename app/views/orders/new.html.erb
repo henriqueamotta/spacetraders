@@ -38,7 +38,15 @@
           <%# (Para adicionar um QR code aqui no futuro, se for o caso) %>
         </div>
 
-        <%= f.button :submit, "Confirm Order", class: "btn btn-primary btn-block mt-4" %>
+        <%= f.button :submit, "Confirm Order",
+            class: "btn btn-primary btn-block mt-4",
+            disabled: @cart_products.empty? %>
+
+        <% if @cart_products.empty? %>
+          <p class="text-danger small mt-2 text-center">
+            Your cart is empty. Add products to continue.
+          </p>
+        <% end %>
       <% end %>
     </div>
 
@@ -50,12 +58,10 @@
           <ul class="list-group" data-checkout-target="cart">
             <% @cart_products.each do |product| %>
               <li id="product_<%= product.id %>" data-price="<%= product.price %>" class="list-group-item d-flex justify-content-between align-items-center">
-                <span><%= product.name %> - <%= number_to_currency(product.price, unit: "₿ ") %></span>
+                <span><%= link_to product.name, product_path(product), class: "product-link" %> - <%= number_to_currency(product.price, unit: "₿ ") %></span>
                 <%= button_to "Remove", remove_from_cart_orders_path(product_id: product.id),
                             method: :delete,
-                            remote: true,
-                            class: "btn btn-sm btn-danger",
-                            data: { action: "checkout#removeItem" } %>
+                            class: "btn btn-sm btn-danger" %>
               </li>
             <% end %>
           </ul>

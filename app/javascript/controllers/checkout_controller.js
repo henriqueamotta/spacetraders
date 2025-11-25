@@ -37,24 +37,8 @@ export default class extends Controller {
     this.updateTotal();
   }
 
-  removeItem(event) {
-    const itemElement = event.target.closest("li");
-    const itemPrice = parseFloat(itemElement.dataset.price);
-
-    const currentSubtotal = parseFloat(this.subtotalTarget.dataset.value);
-    const newSubtotal = currentSubtotal - itemPrice;
-
-    // Atualiza o 'data-value' (o número cru)
-    this.subtotalTarget.dataset.value = newSubtotal;
-
-    // Atualiza o texto visível (formatado)
-    this.subtotalTarget.innerHTML = this.formatCurrency(newSubtotal);
-
-    this.updateTotal();
-    itemElement.remove();
-  }
-
   updateTotal() {
+    // Pega o subtotal (que pode ter sido atualizado pelo servidor)
     const subtotal = parseFloat(this.subtotalTarget.dataset.value);
     const total = subtotal + this.shippingCost;
 

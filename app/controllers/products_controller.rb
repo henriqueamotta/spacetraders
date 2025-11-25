@@ -3,11 +3,24 @@ class ProductsController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
-    # Aplicando o 'Scope' (da Policy)
-    # Isso automaticamente chama o Scope.resolve (para não mostrar os produtos do próprio usuário)
     @products = policy_scope(Product)
 
-    # Filtro de busca simples
+    # Filtro por Vendedor
+    if params[:user_id].present?
+      # Encontrando o vendedor para usar o nome dele no título da view
+      @seller = User.find(params[:user_id])
+      # Filtrando a lista
+      @products = @products.where(user: @seller)
+    end
+
+    # Filtro por Categoria
+    if params[:category].present?
+      # Usando ILIKE para ignorar maiúsculas/minúsculas (droids vs Droids)
+      # O 'singularize' ajuda se o link for 'droids' e no banco estiver 'Droid' (opcional)
+      @products = @products.where("category ILIKE ?", params[:category])
+    end
+
+    # Filtro por busca de nome
     if params[:search].present?
       @products = @products.where("name ILIKE ?", "%#{params[:search]}%")
     end
