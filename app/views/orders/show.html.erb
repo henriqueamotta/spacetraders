@@ -33,7 +33,14 @@
   <h3 class="mt-4">SHIPPING & SUMMARY</h3>
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><strong>User:</strong> <%= @order.user.full_name %></li>
-    <li class="list-group-item"><strong>Status:</strong> <%= @order.status || "Pending" %></li>
+    <li class="list-group-item">
+      <strong>Status:</strong>
+      <% if @order.status == "Delivered" %>
+        <span class="badge bg-success text-dark"><i class="fas fa-check-circle"></i> Delivered</span>
+      <% else %>
+        <span class="badge bg-warning text-dark"><i class="fas fa-clock"></i> Processing</span>
+      <% end %>
+    </li>
     <li class="list-group-item"><strong>Shipped to:</strong> <%= @order.planet %></li>
     <li class="list-group-item"><strong>Address:</strong> <%= @order.address %></li>
   </ul>
@@ -41,9 +48,10 @@
   <%# Distinção entre Subtotal, Frete e Total %>
   <%# (É calculado o subtotal e o frete a partir do total) %>
   <%
-  subtotal = @order.products.sum(&:price)
-  shipping = @order.total - subtotal
+    subtotal = @order.products.sum(&:price)
+    shipping = @order.total - subtotal
   %>
+
   <div class="order-total-summary mt-4">
     <p>
       <span>Subtotal:</span>
@@ -65,8 +73,17 @@
 
   <%# O Pundit (policy) já garante que só o dono vê essa página, mas no futuro pode-se adicionar uma lógica extra: só pode cancelar se não foi enviado ainda. %>
 
-  <%= button_to "Cancel Order", order_path(@order),
-      method: :delete,
-      class: "btn btn-danger",
-      form: { data: { turbo_confirm: "Are you sure you want to cancel this order?" } } %>
+  <%# LÓGICA DE CANCELAMENTO %>
+  <%# Se o status for "Delivered", NÃO mostra o botão de cancelar %>
+  <% if @order.status == "Delivered" %>
+    <div class="text-success">
+      <i class="fas fa-box-open"></i> This order has been delivered.
+    </div>
+  <% else %>
+    <%# Se for "Processing" (ou qualquer outra coisa), permite cancelar %>
+    <%= button_to "Cancel Order", order_path(@order),
+        method: :delete,
+        class: "btn btn-danger",
+        form: { data: { turbo_confirm: "Are you sure you want to cancel this order?" } } %>
+  <% end %>
 </div>

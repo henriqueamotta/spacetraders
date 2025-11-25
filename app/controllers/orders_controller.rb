@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
     # Inicializa um novo pedido com os parâmetros fornecidos
     @order = Order.new(order_params)
     @order.user = current_user
+    @order.status = "Processing"
 
     # Pundit verifica se o usuário tem permissão para criar este pedido
     authorize @order
@@ -43,6 +44,9 @@ class OrdersController < ApplicationController
 
     if @order.save
       session[:cart] = [] # Limpa o carrinho após salvar
+
+      # Agenda o job para atualizar o status do pedido após 3 minutos
+      UpdateOrderStatusJob.set(wait: 3.minutes).perform_later(@order.id)
 
       redirect_to @order, notice: 'THANK YOU! Your order has been successfully placed and will be shipped soon.'
     else
