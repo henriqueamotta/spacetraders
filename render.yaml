@@ -1,0 +1,19 @@
+databases:
+  - name: spacetraders-db
+    databaseName: spacetraders
+    user: spacetraders
+    plan: free
+
+services:
+  - type: web
+    name: spacetraders-web
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec rails server"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: spacetraders-db
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

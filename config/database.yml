@@ -79,6 +79,5 @@ test:
 #
 production:
   <<: *default
-  database: space_traders_production
-  username: space_traders
-  password: <%= ENV["SPACE_TRADERS_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
+  adapter: postgresql
