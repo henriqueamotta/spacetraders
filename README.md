@@ -10,6 +10,10 @@
 
 # 🇺🇸 English Version
 
+> **🔴 Live Demo:** [Access the application online](https://spacetraders-web.onrender.com)
+>
+> *Infrastructure: Hosted on **Render**, using **PostgreSQL** database and **Cloudinary** for asset storage.*
+
 An online marketplace built with Ruby on Rails where space enthusiasts can buy and sell intergalactic vehicles, such as starships, droids, and more. Version 2.0 introduces a robust asynchronous architecture, advanced authorization, and a fully responsive Neon/Dark UI.
 
 ---
@@ -99,6 +103,10 @@ bundle exec sidekiq
 <div id="pt-br-version"></div>
 
 # 🇧🇷 Versão em Português
+
+> **🔴 Demonstração Online:** [Acesse a aplicação aqui](https://spacetraders-web.onrender.com)
+>
+> *Infraestrutura: Hospedado no **Render**, utilizando banco de dados **PostgreSQL** e **Cloudinary** para armazenamento de arquivos.*
 
 Um marketplace online construído com Ruby on Rails onde entusiastas do espaço podem comprar e vender veículos intergalácticos, como naves estelares, droides e muito mais. A Versão 2.0 introduz uma arquitetura assíncrona robusta, autorização avançada e uma UI Neon/Dark totalmente responsiva.
 
