@@ -9,3 +9,7 @@ local:
 cloudinary:
   service: Cloudinary
   folder: <%= Rails.env %>
+
+production:
+  service: Cloudinary
+  folder: spacetraders_production
